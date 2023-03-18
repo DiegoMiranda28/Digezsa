@@ -12,18 +12,17 @@
 
 <body>
 
-                                  <!--    ETIQUETA NAV   -->
-    <nav class="px-2 bg-blue-900">
-        <!--    CONTENEDOR DEL NAVEGADOR   -->
-        <div class="container flex flex-wrap items-center justify-between mx-auto">
-            <!--    LOGO Y TITULO   -->
-            <a href="index.html" class="flex items-center hover:bg-slate-400 rounded"> 
+    <nav class="px-2 bg-blue-900 flex">
+        <div class="container flex flex-wrap items-center justify-between mx-auto ctn-tablet">
+           
+            <a href="../index.html" class="flex items-center hover:bg-slate-400 rounded"> 
                 <img src="../img/DIGESZA.png" class="h-6 mr-3 sm:h-10"/>
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white 
-                hover:text-black hover:font-bold">Digesza</span>
+                <span class="titulo self-center text-xl font-bold whitespace-nowrap dark:text-white 
+                hover:text-white hover:font-bold">Digesza</span>
             </a>
-            <!--    MENÚ DE OPCIONES   -->
-            <div class="hidden w-full md:block md:w-auto">
+
+            <!--    Lista de menu   -->
+            <div class="hidden w-full md:block md:w-auto ctn-menu-tablet">
               <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium 
               md:border-0 md:bg-white dark:bg-blue-900 md:dark:bg-blue-800">   
                   <li>
@@ -67,7 +66,6 @@
 <!--======================================================================================-->
 
                                     <!--    MODAL   -->
-
 <div class="fixed top-0 left-0 right-0 z-50 p-4 modal" id="modal">
   <div class="relative w-full h-full max-w-md md:h-auto">
       <div class="relative bg-white rounded-lg shadow dark:bg-blue-700">
@@ -88,6 +86,10 @@
       </div>
   </div>
 </div>
+
+<section class="bg-blue-300">
+    z
+</section>
 
     <script src="../js/backForms.js"></script>
 </body>
