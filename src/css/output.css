@@ -764,6 +764,10 @@ video {
   font-weight: 400;
 }
 
+.font-semibold {
+  font-weight: 600;
+}
+
 .text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
