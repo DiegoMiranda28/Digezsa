@@ -1,5 +1,6 @@
 .modal {
     text-align: -webkit-center;
+    display:none;
 }
 
 .titulo {
@@ -14,5 +15,5 @@
     .ctn-menu-tablet {
         margin-top: 5px;
     }
-
 }
+
