@@ -110,20 +110,20 @@
             <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
 
                 <form>
-                                <!-- ===== DATOS DERECHO HABIENTE ===== -->
-                                    <!--    Caja de la sección "DATOS PERSONALES" -->
+                                
+                    <!-- ==================== DATOS PERSONALES ==================== -->
                     <h6 class="text-gray-700 text-sm mt-1 mb-6 font-bold uppercase">Datos personales del acréditado</h6>
                     <div class="flex flex-wrap">                       
-                        <!--    Caja de los inputs de datos personales  -->
+                        <!--    contenedor nombre  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
-                            <!--    Caja de label e input  -->
+                            <!--    div de los datos  -->
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">Nombre(s)</label>
                                 <input type="text" id="input-nombre" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su nombre...">
                             </div>
                         </div>
-
+                        <!--    contenedor apellido paterno  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">Apellido paterno</label>
@@ -131,7 +131,7 @@
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su apellido paterno...">
                             </div>
                         </div>
-
+                        <!--    contenedor apellido materno  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">Apellido materno</label>
@@ -139,7 +139,7 @@
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su apellido materno...">
                             </div>
                         </div>
-
+                        <!--    contenedor curp  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">CURP</label>
@@ -148,16 +148,16 @@
                                 required minlength="18" maxlength="18" placeholder="Ingrese su CURP...">
                             </div>
                         </div>
-
+                        <!--    contenedor rfc  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">RFC</label>
                                 <input type="text" id="input-rfc" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" 
-                                required minlength="13" maxlength="13"placeholder="Ingrese su RFC...">
+                                required minlength="13" maxlength="13" placeholder="Ingrese su RFC...">
                             </div>
                         </div>
-
+                        <!--    contenedor nss  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">NSS</label>
@@ -166,13 +166,14 @@
                                 required minlength="11" maxlength="11" placeholder="Ingrese su número de seguro social...">
                             </div>
                         </div>
-
+                        <!--    contenedor estado civil  -->
                         <div class="w-full lg:w-3/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-2" htmlfor="grid-password">Estado civil</label>
                                 <select id="input-estadoCivil" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
                                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
-                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                onclick="selectEstadoCivil()">
                                     <option selected disabled hidden>Elige una opción</option>    
                                     <option value="Soltero(a)">Soltero(a)</option>
                                     <option value="Casado(a)">Casado(a)</option>
@@ -180,7 +181,7 @@
                                 </select>
                             </div>
                         </div>
-
+                        <!--    contenedor genero  -->
                         <div class="w-full lg:w-3/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-2" htmlfor="grid-password">Género</label>
@@ -193,7 +194,7 @@
                                 </select>
                             </div>
                         </div>
-
+                        <!--    contenedor correo  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
                             <!--    Caja de label e input  -->
                             <div class="relative w-full mb-3">
@@ -204,42 +205,13 @@
                         </div>
                     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                    <!--    Linea separadora  -->
                     <hr class="mt-6 border-b-1 border-gray-600">
 
-                                    <!--    Caja de la sección "DATOS LABORALES DEL ACREDITADO" -->
+                    <!-- ==================== DATOS LABORALES ==================== -->
                     <h6 class="text-gray-700 text-sm mt-1 mb-6 font-bold uppercase">Datos laborales del acreditado</h6>
-
                     <div class="flex flex-wrap">
+                        <!--    contenedor dependencia  -->
                         <div class="w-full lg:w-6/12 px-4 mt-[-0.5em]">
-                            <!--    Caja de label e input  -->
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                                     Dependencia o entidad afiliada denominación oficial
@@ -248,7 +220,7 @@
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su dependencia...">
                             </div>
                         </div>
-
+                        <!--    contenedor organizacion  -->
                         <div class="w-full lg:w-6/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
@@ -258,7 +230,7 @@
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su organización...">
                             </div>
                         </div>
-
+                        <!--    contenedor sueldo  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">
@@ -268,75 +240,60 @@
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="$...">
                             </div>
                         </div>
-
+                        <!--    contenedor nombramiento  -->
                         <div class="w-full lg:w-3/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">Nombramiento</label>
-                                <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg 
-                                sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-[-0.2em]">
-                                    <li class="w-full border-b border-gray-200 sm:border-b-0 dark:border-gray-600 ">
-                                        <div class="flex items-center">
-                                            <input id="radio-base" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600 
-                                            bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700
-                                            dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 ml-1">
-                                            <label for="radio-base" class="w-full py-3 ml-3 text-xs font-medium text-gray-900 dark:text-gray-300">Base</label>
-                                        </div>
-                                    </li>
-                                    <li class="w-full border-b border-gray-200 sm:border-b-0 dark:border-gray-600">
-                                        <div class="flex items-center">
-                                            <input id="radio-nombramiento" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600
-                                          bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700
-                                          dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 ml-[-1em]">
-                                            <label for="radio-nombramiento" class="w-full py-3 ml-2 text-xs font-medium text-gray-900 dark:text-gray-300">Nombramiento</label>
-                                        </div>
-                                    </li>    
-                                </ul>
+                                <select id="input-nombramiento" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
+                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option selected disabled hidden>Elige una opción</option>
+                                    <option value="Base">Base</option>
+                                    <option value="Confianza">Confianza</option>
+                                </select>
                             </div>
                         </div>
-
-                        <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
+                        <!--    contenedor bimestres  -->
+                        <div class="w-full lg:w-3/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">Número de bimestres cotizados</label>
                                 <input type="number" id="input-bimestres" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
-                                text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="0 ...">
+                                text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="....">
                             </div>
                         </div>
                     </div>
 
                     <hr class="mt-6 border-b-1 border-gray-600">
 
-                    <!--    Caja de la sección "DOMICILIO DEL ACREDITADO" -->
+                    <!-- ==================== DATOS DOMICILIO ==================== -->
                     <h6 class="text-gray-700 text-sm mt-1 mb-6 font-bold uppercase">Domicilio particular</h6>
-
                     <div class="flex flex-wrap">
+                        <!--    contenedor calle  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
-                            <!--    Caja de label e input  -->
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">Calle</label>
                                 <input type="text" id="input-calle" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su calle...">
                             </div>
                         </div>
-
+                        <!--    contenedor colonia  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
-                            <!--    Caja de label e input  -->
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">Colonia</label>
                                 <input type="text" id="input-colonia" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su colonia...">
                             </div>
                         </div>
-
+                        <!--    contenedor numero interior y exterior  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">Número</label>
                                 <ul class="items-center w-full text-sm font-medium text-gray-90 border border-gray-200 rounded-lg 
-                                sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-[-0.2em] bg-white">
-                                    
+                                sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-[-0.2em] bg-white">   
                                     <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600 ">
                                         <div class="flex items-center">
                                             <label class="py-3 ml-1 text-xs font-medium text-gray-900 dark:text-gray-300 w-[4em]">Interior:</label>
-                                            <input type="text" class="border-4 px-3 py-0 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                            <input type="text" id="input-interior" class="border-4 px-3 py-0 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                             text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150 mt-[-0.2em] w-[5em] ml-2">
                                         </div>
                                     </li>
@@ -344,7 +301,7 @@
                                     <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600 ">
                                         <div class="flex items-center">
                                             <label class="py-3 ml-1 text-xs font-medium text-gray-900 dark:text-gray-300 w-[4em]">Exterior:</label>
-                                            <input type="text" class="border-4 px-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                            <input type="text" id="input-exterior" class="border-4 px-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                             text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150 mt-[-0.2em] w-[5em] ml-2">
                                         </div>
                                     </li> 
@@ -352,255 +309,227 @@
                                 </ul>
                             </div>
                         </div>
-
+                        <!--    contenedor codigo postal  -->
                         <div class="w-full lg:w-2/12 px-4 mt-[-0.5em]">
-                            <!--    Caja de label e input  -->
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">Código postal</label>
                                 <input type="tel" id="input-codigoPostal" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
-                                text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="...">
+                                text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" 
+                                required minlength="5" maxlength="5" placeholder="...">
                             </div>
                         </div>
-
+                        <!--    contenedor municipio  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
-                            <!--    Caja de label e input  -->
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">Municipio o Delegación</label>
                                 <input type="text" id="input-municipio" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su municipio...">
                             </div>
                         </div>
-
+                        <!--    contenedor entidad federativa  -->
                         <div class="w-full lg:w-3/12 px-4 mt-[-0.5em]">
-                            <!--    Caja de label e input  -->
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">Entidad federativa</label>
                                 <input type="text" id="input-entidadFederativa" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su entidad federativa...">
                             </div>
                         </div>
-
+                        <!--    contenedor numero de integrantes de familia  -->
                         <div class="w-full lg:w-3/12 px-4 mt-[-0.5em]">
-                            <!--    Caja de label e input  -->
                             <div class="relative w-full mb-3 text-center">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-center mt-1" htmlfor="grid-password">Número de integrantes de familia</label>
                                 <input type="tel" id="input-integrantes" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                 text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="# ...">
                             </div>
                         </div>
-
+                        <!--    contenedor numero de telefono  -->
                         <div class="w-full lg:w-3/12 px-4 mt-[-0.5em]">
-                            <!--    Caja de label e input  -->
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">Teléfono particular </label>
                                 <input type="tel" id="input-telefono" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
-                                text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="# de teléfono...">
+                                text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150 mt-[-0.2em]" 
+                                required minlength="10" maxlength="10" placeholder="# de teléfono...">
                             </div>
                         </div>
-
+                        <!--    contenedor numero de celular  -->
                         <div class="w-full lg:w-3/12 px-4 mt-[-0.5em]">
-                            <!--    Caja de label e input  -->
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">Teléfono celular </label>
                                 <input type="tel" id="input-celular" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
-                                text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="# de celular...">
+                                text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150 mt-[-0.2em]" 
+                                required minlength="10" maxlength="10" placeholder="# de celular...">
                             </div>
                         </div>
-
                     </div>
 
                     <hr class="mt-6 border-b-1 border-gray-600">
 
-                            <!-- ===== DATOS DE CÓNYUGE ===== -->
-                    <!--    Caja de la sección "DATOS PERSONALES DEL CÓNYUGE" -->
-                    <h6 class="text-gray-700 text-sm mt-1 mb-6 font-bold uppercase">Datos personales del cónyuge</h6>
-                    
-                    <div class="flex flex-wrap">   
-                        <!--    Caja de los inputs de datos personales  -->
+                    <!-- ==================== DATOS PERSONALES CONYUGE ==================== -->
+                    <h6 class="text-gray-700 text-sm mt-1 mb-6 font-bold uppercase hidden" id="label-conyuge">Datos personales del cónyuge</h6>   
+                    <div class="flex-wrap hidden" id="contenedor-conyuge-personal">   
+                        <!--    contenedor nombre conyuge  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
-                            <!--    Caja de label e input  -->
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">Nombre(s)</label>
-                                <input type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                <input type="text" id="input-nombre-conyuge" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su nombre...">
                             </div>
                         </div>
-
+                        <!--    contenedor apellido paterno conyuge  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">Apellido paterno</label>
-                                <input type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                <input type="text" id="input-ap-paterno" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su apellido paterno...">
                             </div>
                         </div>
-
+                        <!--    contenedor apellido materno conyuge  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">Apellido materno</label>
-                                <input type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                <input type="text" id="input-ap-materno" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su apellido materno...">
                             </div>
                         </div>
-
+                        <!--    contenedor curp conyuge  -->
                         <div class="w-full lg:w-3/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">CURP</label>
-                                <input type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
-                                text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su CURP...">
+                                <input type="text" id="input-curp-conyuge" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" 
+                                required minlength="18" maxlength="18" placeholder="Ingrese su CURP...">
                             </div>
                         </div>
-
+                        <!--    contenedor rfc conyuge  -->
                         <div class="w-full lg:w-3/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">RFC</label>
-                                <input type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
-                                text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su RFC...">
+                                <input type="text" id="input-rfc-conyuge" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]"
+                                required minlength="13" maxlength="13" placeholder="Ingrese su RFC...">
                             </div>
                         </div>
-
+                        <!--    contenedor nss conyuge  -->
+                        <div class="w-full lg:w-3/12 px-4 mt-[-0.5em]">
+                            <div class="relative w-full mb-3 mt-1">
+                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">NSS</label>
+                                <input type="tel" id="input-nss-conyuge" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]"
+                                required minlength="11" maxlength="11" placeholder="# de seguro social...">
+                            </div>
+                        </div>
+                        <!--    contenedor genero conyuge  -->
                         <div class="w-full lg:w-3/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">Género</label>
-                                                            <!--    Menú del tipo estado civil  -->
-                                <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg 
-                                sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-[-0.2em]">
-                                    <li class="w-full border-b border-gray-200 sm:border-b-0 dark:border-gray-600 ml-3">
-                                        <div class="flex items-center">
-                                            <input id="radio-casado" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600 
-                                            bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700
-                                            dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                            <label for="radio-casado" class="w-full py-3 ml-2 text-xs font-medium text-gray-900 dark:text-gray-300">Masculino</label>
-                                        </div>
-                                    </li>
-
-                                    <li class="w-full border-b border-gray-200 sm:border-b-0 dark:border-gray-600">
-                                        <div class="flex items-center">
-                                            <input id="radio-soltero" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600
-                                          bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700
-                                          dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                            <label for="radio-soltero" class="w-full py-3 ml-2 text-xs font-medium text-gray-900 dark:text-gray-300">Femenino</label>
-                                        </div>
-                                    </li>    
-                                </ul>
+                                <select id="input-genero-conyuge" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
+                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option selected disabled hidden>Elige una opción</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                </select>
                             </div>
                         </div>
-                        
+                        <!--    contenedor cotiza con infonavit  -->
                         <div class="w-full lg:w-3/12 px-4 mt-[-0.5em]">
-                            <!--    Caja de label e input  -->
-                            <div class="relative w-full mb-3 mt-1">
-                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">NSS</label>
-                                <input type="tel" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
-                                text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="# de seguro social...">
+                            <div class="relative w-full mb-3">
+                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">¿Cotiza con Infonavit?</label>
+                                <select id="input-infonavit" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
+                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option selected disabled hidden>Elige una opción</option>
+                                    <option value="Si">Si</option>
+                                    <option value="No">No</option>
+                                </select>
                             </div>
                         </div>
                     </div>
+                    
 
-                    <hr class="mt-6 border-b-1 border-gray-600">
+                    <hr class="mt-6 border-b-1 border-gray-600 hidden" id="linea-conyuge">
 
                     <!--    Caja de la sección "DATOS LABORALES DEL CÓNYUGE" -->
-                    <h6 class="text-gray-700 text-sm mt-1 mb-6 font-bold uppercase">Datos laborales del cónyuge</h6>
-
-                    <div class="flex flex-wrap">
+                    <h6 class="text-gray-700 text-sm mt-1 mb-6 font-bold uppercase hidden" id="label-conyuge2">Datos laborales del cónyuge</h6>
+                    <div class="flex-wrap none hidden" id="contenedor-laborales-conyuge">
+                        <!--    contenedor dependencia conyuge  -->
                         <div class="w-full lg:w-6/12 px-4 mt-[-0.5em]">
-                            <!--    Caja de label e input  -->
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                                     Dependencia o entidad afiliada denominación oficial
                                 </label>
-                                <input type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                <input type="text" id="input-dependencia-conyuge" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su dependencia...">
                             </div>
                         </div>
-
+                        <!--    contenedor organizacion conyuge  -->
                         <div class="w-full lg:w-6/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                                     Organización sindical a la que pertenece (en su caso)
                                 </label>
-                                <input type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                <input type="text" id="input-organizacion-conyuge" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su organización...">
                             </div>
                         </div>
-
+                        <!--    contenedor sueldo conyuge  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">
                                     Sueldo base de cotización quincenal
                                 </label>
-                                <input type="tel" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                <input type="tel" id="input-sueldo-conyuge" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="$...">
                             </div>
                         </div>
-     
+                        <!--    contenedor nombramiento conyuge  -->
                         <div class="w-full lg:w-3/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">Nombramiento</label>
-                                <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg 
-                                sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-[-0.2em]">
-                                    <li class="w-full border-b border-gray-200 sm:border-b-0 dark:border-gray-600 ">
-                                        <div class="flex items-center">
-                                            <input id="radio-base" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600 
-                                            bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700
-                                            dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 ml-1">
-                                            <label for="radio-base" class="w-full py-3 ml-3 text-xs font-medium text-gray-900 dark:text-gray-300">Base</label>
-                                        </div>
-                                    </li>
-                                    <li class="w-full border-b border-gray-200 sm:border-b-0 dark:border-gray-600">
-                                        <div class="flex items-center">
-                                            <input id="radio-nombramiento" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600
-                                          bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700
-                                          dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 ml-[-1em]">
-                                            <label for="radio-nombramiento" class="w-full py-3 ml-2 text-xs font-medium text-gray-900 dark:text-gray-300">Nombramiento</label>
-                                        </div>
-                                    </li>    
-                                </ul>
+                                <select id="input-nombramiento-conyuge" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
+                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option selected disabled hidden>Elige una opción</option>
+                                    <option value="Base">Base</option>
+                                    <option value="Confianza">Confianza</option>
+                                </select>
                             </div>
                         </div>
-
+                        <!--    contenedor bimestres conyuge  -->
                         <div class="w-full lg:w-4/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">Número de bimestres cotizados</label>
-                                <input type="number" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                <input type="number" id="input-bimestres-conyuge" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="0...">
                             </div>
                         </div>
                     </div>
 
-                    <hr class="mt-6 border-b-1 border-gray-600">
 
-                            <!-- ===== DATOS DE VIVIENDA ===== -->
-                    <!--    Caja de la sección "ESPECIFICACIONES DE VIVIENDA" -->
+
+                    <hr class="mt-6 border-b-1 border-gray-600 hidden" id="linea-conyuge2">
+
+
+
+                    <!-- ==================== DATOS VIVIENDA ==================== -->
                     <h6 class="text-gray-700 text-sm mt-1 mb-6 font-bold uppercase">Datos del crédito hipotecario que solicita</h6>
-
                     <div class="flex flex-wrap">
-                        <!--    Caja de los inputs de datos personales  -->
+
+                        <!--    contenedor adquisicion de vivienda  -->
                         <div class="w-full lg:w-3/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">Adquisición de vivienda</label>
-                                <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg 
-                                sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-[-0.2em]">
-                                    <li class="w-full border-b border-gray-200 sm:border-b-0 dark:border-gray-600 ml-4">
-                                        <div class="flex items-center">
-                                            <input id="radio-base" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600 
-                                            bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700
-                                            dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                            <label for="radio-base" class="w-full py-3 ml-2 text-xs font-medium text-gray-900 dark:text-gray-300">Nueva</label>
-                                        </div>
-                                    </li>
-                                    <li class="w-full border-b border-gray-200 sm:border-b-0 dark:border-gray-600">
-                                        <div class="flex items-center">
-                                            <input id="radio-nombramiento" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600
-                                          bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700
-                                          dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                            <label for="radio-nombramiento" class="w-full py-3 ml-2 text-xs font-medium text-gray-900 dark:text-gray-300">Usada</label>
-                                        </div>
-                                    </li>    
-                                </ul>
+                                <select id="input-vivienda" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
+                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option selected disabled hidden>Elige una opción</option>
+                                    <option value="Nueva">Nueva</option>
+                                    <option value="Usada">Usada</option>
+                                </select>
                             </div>
                         </div>
-
+                        <!--    contenedor entidad de la vivienda  -->
                         <div class="w-full lg:w-6/12 px-4 mt-[-0.5em]">
-                            <!--    Caja de label e input  -->
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                                     Entidad federativa a ejercer
@@ -609,7 +538,7 @@
                                 text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mt-[-0.2em]" placeholder="Ingrese su entidad federativa...">
                             </div>
                         </div>
-                        
+                        <!--    contenedor caracteristicas de la vivienda  -->
                         <div class="w-full lg:w-8/12 px-4 mt-[-0.5em]">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-1" htmlfor="grid-password">Especificaciones de vivienda</label>
@@ -622,10 +551,9 @@
                     </div>
 
                     <hr class="mt-6 border-b-1 border-gray-600">
-
-                    <!-- ===== DOCUMENTOS ESCANEADOS ===== -->
-                    <!--    Caja de la sección "DOCUMENTOS ESCANEADOS" -->
+                  
                     <div class="inline-flex justify-between w-full">    
+                        <!-- ==================== DATOS VIVIENDA ==================== -->
                         <h6 class="text-gray-700 text-sm mt-1 mb-6 font-bold uppercase">Adjuntar documentos actualizados</h6>
                         <button class="" id="btn-aviso-pdf">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
