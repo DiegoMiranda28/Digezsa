@@ -1,9 +1,11 @@
 /* Objeto del usuario con todos los datos recabados */
-function ObjetoDerechoHabiente(objetoPersona,objetoLaboral,objetoDomicilio,objetoVivienda){
+function ObjetoDerechoHabiente(objetoPersona,objetoLaboral,objetoDomicilio,objetoVivienda,objetoDatosConyuge,objetoLaboralesConyuge){
     this.objetoPersona = objetoPersona;
     this.objetoLaboral = objetoLaboral;
     this.objetoDomicilio = objetoDomicilio;
     this.objetoVivienda = objetoVivienda;
+    this.objetoDatosConyuge = objetoDatosConyuge;
+    this.DatosLaboralesConyuge = objetoLaboralesConyuge;
 }
 
 /* ========== Objetos de diversos datos ========== */
@@ -80,13 +82,15 @@ let adquisicionVivienda,caracteristicasVivienda,entidadVivienda;
 let nombreConyuge,paternoConyuge,maternoConyuge,curpConyuge,rfcConyuge,nssConyuge,generoConyuge,infonavit;
 let dependenciaConyuge,organizacioConyuge,sueldoConyuge,nombramientoConyuge,bimestresConyuge;
 
+let credencial,curpPdf,talonPago,domicilio;
+
 /* ========== Arreglo que guardara los objetos ========== */
 var derechoHabientes = [];
 
 let conyugeHTML = ['label-conyuge','contenedor-conyuge-personal','linea-conyuge','contenedor-laborales-conyuge','label-conyuge2','linea-conyuge2'];
 
 /* ========== Funcion que extrae el valor de todos los datos ========== */
-function valorDatos(){
+function getDatos(){
     /*  valor de datos personales  */
     nombre = document.getElementById('input-nombre').value;
     apellidoPaterno = document.getElementById('input-apellidoPaterno').value;
@@ -97,14 +101,13 @@ function valorDatos(){
     correo = document.getElementById('input-correo').value;
     estadoCivil = () => {
         let selectEstado = document.getElementById('input-estadoCivil').value;
-        console.log("ddd",selectEstado)
         return selectEstado;
     }
     genero = () => {
         let selectGenero = document.getElementById('input-genero').value;
         return selectGenero;
     }
-    
+   
      /*  valor de datos laborales  */
     dependencia = document.getElementById('input-dependencia').value;
     organizacionSindical = document.getElementById('input-organizacion').value;
@@ -146,7 +149,7 @@ function valorDatos(){
         let selectGeneroConyuge = document.getElementById('input-genero-conyuge').value;
         return selectGeneroConyuge;
     }
-    infonavitConyuge = () => {
+    infonavit = () => {
         let selectInfonavit = document.getElementById('input-infonavit').value;
         return selectInfonavit;
     }
@@ -161,10 +164,16 @@ function valorDatos(){
     }
     bimestresConyuge = document.getElementById('input-bimestres-conyuge').value;
 
+    /*  valor de los documentos */
+    credencial = document.getElementById("input-credencial-pdf").value;
+    curpPdf = document.getElementById("input-curp-pdf").value;
+    talonPago = document.getElementById("input-pago-pdf").value;
+    domicilio = document.getElementById("input-comprobante-pdf").value;
 }
 
+/* ========== Funcion principal para el ingreso de datos ========== */
 function enviar(){
-    valorDatos();
+    getDatos();
 
     //if(btn_pre_envio.checked){
         if(verificarDatos()){
@@ -173,11 +182,19 @@ function enviar(){
         var datos_laborales = new DatosLaborales(dependencia,organizacionSindical,sueldoBase,nombramiento());
         var datos_domicilio = new DatosDomicilio(calle,colonia,numInterior,numExterior,codigoPostal,municipio,entidadFederativa,numeroIntegrantes,telefonoParticular,celular);
         var datos_vivienda = new DatosVivienda(adquisicionVivienda(),entidadVivienda,caracteristicasVivienda);
+        var datos_conyuge = new DatosPersonalesConyuge(nombreConyuge,paternoConyuge,maternoConyuge,curpConyuge,rfcConyuge,nssConyuge,generoConyuge(),infonavit());
+        var datos_laborales_conyuge = new DatosLaboralesConyuge(dependenciaConyuge,organizacioConyuge,sueldoConyuge,nombramientoConyuge(),bimestresConyuge);
 
-        var objetoPersonaInformacion = new ObjetoDerechoHabiente(datos_personales,datos_laborales,datos_domicilio,datos_vivienda);
-        derechoHabientes.push(objetoPersonaInformacion);
-        index++;
+            if(!selectEstadoCivil() === "Casado(a)"){
+                var objetoPersonaInformacion = new ObjetoDerechoHabiente(datos_personales,datos_laborales,datos_domicilio,datos_vivienda);
+                derechoHabientes.push(objetoPersonaInformacion);
+            }else{
+                var objetoPersonaInformacion = new ObjetoDerechoHabiente(datos_personales,datos_laborales,datos_domicilio,datos_vivienda,datos_conyuge,datos_laborales_conyuge);
+                derechoHabientes.push(objetoPersonaInformacion);
+            }
+
         limpiarDatosPersonales();
+        index++;
         }else{
             console.log("ERROR");
         }
@@ -191,12 +208,12 @@ function enviar(){
 /* ========== Funcion para obtener los datos en tiempo real y saber si habilitar los datos del conyuge ========== */
 function selectEstadoCivil(){
     let selectEstado = document.getElementById('input-estadoCivil').value;
-    console.log("select",selectEstado);
-
+    
     if(selectEstado === "Casado(a)"){
         conyugeHTML.forEach(iden => {
             var element = document.getElementById(`${iden}`);
             element.style.display = "block";
+            element.style.display = "flex";
         })
 
     }else{
@@ -209,39 +226,43 @@ function selectEstadoCivil(){
     return selectEstado;
 }
 
-
 /* ========== Funciones para validar todos los datos ========== */
 function verificarDatos(){
-    var validar;
-
-    if(nombre === "" && apellidoPaterno === "" && apellidoPaterno === "" && curp === "" && rfc === "" && correo === ""){
-        validar = false;
-        console.log("Any dato vacio");
-    }else{validar = true;}
-
+    var validar = true;
+    console.log(estadoCivil())
+//MIMJ090117HTSRRLA5
     if(nombre === ""){
         validar = false;
     }else{
-        if(!validarApellido()) validar = false;
-        if(!validarCurpRfcNss()) validar = false;
-        if(!validarCorreo()) validar = false;
-        if(!validarEstado()) validar = false;
-        if(!validarCurpRfcNss()) validar = false;
-        if(!validarDomicilio()) validar = false;
-        if(!validarDatosLaborales()) validar = false;
-        if(!validarDatosVivienda()) validar = false;
+            if(!validarApellido(nombre,apellidoPaterno,apellidoMaterno)) validar = false;
+            if(!validarCurpRfcNss(curp,rfc,numeroSeguro)) validar = false;
+            if(!validarCorreo()) validar = false;
+            if(!validarEstado()) validar = false;
+            if(!validarDomicilio()) validar = false;
+            if(!validarDatosLaborales(dependencia,organizacio,sueldoBase,nombramiento,bimestres)) validar = false;
+            if(!validarDatosVivienda()) validar = false;
+            if(!validarDocumentos()) validar = false;
+                if(selectEstadoCivil() === "Casado(a)"){
+                    console.log(true);
+                    if(!validarApellido(nombreConyuge,paternoConyuge,maternoConyuge)) validar = false; //cónyuge
+                    if(!validarCurpRfcNss(curpConyuge,rfcConyuge,nssConyuge)) validar = false;
+                    if(!validarGenero(generoConyuge(),infonavit())) validar = false;
+                    if(!validarDatosLaborales(dependenciaConyuge,sueldoConyuge,nombramientoConyuge(),bimestresConyuge)) validar = false;
+                }else{
+                    console.log(false);
+                }
+        
     }
-
     return validar;
 }
 
 /* ========== Funciones de validación de datos ========== */
-function validarApellido(){
+function validarApellido(nombre,paterno,materno){
     var aux;
-    if(apellidoPaterno === "" && apellidoMaterno === ""){
+    if(nombre === "" && paterno === "" && materno === ""){
         console.log("Error apellido");
         aux = false;
-    }else if(apellidoPaterno === "" || apellidoMaterno === ""){
+    }else if(nombre === "" || paterno === "" || materno === ""){
         console.log("Error apellido");
         aux = false;
     }else{
@@ -250,17 +271,17 @@ function validarApellido(){
     return aux;
 }
 
-function validarCurpRfcNss(){
+function validarCurpRfcNss(inCurp,inRfc,inNss){
     var aux;
-    if(curp === "" && rfc === "" && numeroSeguro === ""){
+    if(inCurp === "" && inRfc === "" && inNss === ""){
         console.log("ERROR Curp | RFC | NSS");
         aux = false;
-    }else if(curp === "" || rfc === "" || numeroSeguro === ""){
+    }else if(inCurp === "" || inRfc === "" || inNss === ""){
         console.log("ERROR Curp | RFC | NSS");
         aux = false;
-    }else if(!validarCurp() && !validarRFC()){
+    }else if(!validarCurp(inCurp) && !validarRFC(inRfc)){
         aux = false;
-    }else if(!validarCurp() || !validarRFC()){
+    }else if(!validarCurp(inCurp) || !validarRFC(inRfc)){
         aux = false;
     }
     else{aux = true;}
@@ -284,6 +305,18 @@ function validarCorreo(){
     return aux;
 }
 
+function validarGenero(inGenero,inInfonavit){
+    var aux;
+    if(inGenero === "Elige una opción" && inInfonavit === "Elige una opción"){
+        aux = false;
+    }else if(inGenero === "Elige una opción" || inInfonavit === "Elige una opción"){
+        aux = false;
+    }else{
+        aux = true;
+    }
+    return aux;
+}
+
 function validarEstado(){
     var aux;
     if(estadoCivil() === "Elige una opción" && genero() === "Elige una opción"){
@@ -297,10 +330,10 @@ function validarEstado(){
     return aux;
 }
 
-function validarCurp() {
+function validarCurp(inCurp) {
     var aux;
     var re = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
-        validado = curp.match(re);
+        validado = inCurp.match(re);
 	
     if (!validado){ //Coincide con el formato general?
     	aux =  false;
@@ -325,11 +358,11 @@ function validarCurp() {
     return aux; //Validado
 }
 
-function validarRFC(){
+function validarRFC(inRfc){
     var aux;
     const reg = /^([a-z]{3,4})(\d{2})(\d{2})(\d{2})([0-9a-z]{3})$/i;
 
-    if(rfc.match(reg)){
+    if(inRfc.match(reg)){
         aux = true;
     }else{
         aux = false;
@@ -354,19 +387,18 @@ function validarDomicilio(){
     return aux;
 }
 
-function validarDatosLaborales(){
+function validarDatosLaborales(inDependencia,inSueldo,inNombramiento,inBimestres){
     var aux;
 
-    if(dependencia === "" && sueldoBase === "" && nombramiento() === "Elige una opción" && bimestres === ""){
+    if(inDependencia === "" && inSueldo === "" && inNombramiento === "Elige una opción" && inBimestres === ""){
         console.log("ERROR datos laborales");
         aux = false;
-    }else if(dependencia === "" || sueldoBase === "" || nombramiento() === "Elige una opción" || bimestres === ""){
+    }else if(inDependencia === "" || inSueldo === "" || inNombramiento === "Elige una opción" || inBimestres === ""){
         console.log("ERROR datos laborales");
         aux = false;
     }else{
         aux = true;
     }
-
     return aux;
 }
 
@@ -386,9 +418,21 @@ function validarDatosVivienda(){
     return aux;
 }
 
+function validarDocumentos(){
+    var aux;
 
+    if(credencial === "" && curpPdf === "" && talonPago === "" && domicilio === ""){
+        console.log("ERROR documentos");
+        aux = false;
+    }else if(credencial === "" || curpPdf === "" || talonPago === "" || domicilio === ""){
+        console.log("ERROR documentos");
+        aux = false;
+    }else{
+        aux = true;
+    }
 
-
+    return aux;
+}
 
 /* ========== Limpiar campos ========== */
 function limpiarDatosPersonales(){
@@ -419,8 +463,29 @@ function limpiarDatosPersonales(){
     document.getElementById('input-telefono').value = "";
     document.getElementById('input-celular').value = "";
 
+    document.getElementById('input-vivienda').value = "Elige una opción";
     document.getElementById('input-entidadVivienda').value = "";
     document.getElementById('input-caracteristicas').value = "";
+
+    document.getElementById('input-nombre-conyuge').value = "";
+    document.getElementById('input-ap-paterno').value = "";
+    document.getElementById('input-ap-materno').value = "";
+    document.getElementById('input-curp-conyuge').value = "";
+    document.getElementById('input-rfc-conyuge').value = "";
+    document.getElementById('input-nss-conyuge').value = "";
+    document.getElementById('input-genero-conyuge').value = "Elige una opción";
+    document.getElementById('input-infonavit').value = "Elige una opción";
+
+    document.getElementById('input-dependencia-conyuge').value;
+    document.getElementById('input-organizacion-conyuge').value;
+    document.getElementById('input-sueldo-conyuge').value;
+    document.getElementById('input-nombramiento-conyuge').value;
+    document.getElementById('input-bimestres-conyuge').value;
+
+    document.getElementById("input-credencial-pdf").value;
+    document.getElementById("input-curp-pdf").value;
+    document.getElementById("input-pago-pdf").value;
+    document.getElementById("input-comprobante-pdf").value;
 }
 
 
@@ -485,3 +550,6 @@ btnDocumentos.addEventListener("click", () =>{
     alert("- Identificación oficial por ambos lados al 200% a color" + 
     "\n- Curp actualizado" + "\n- Ultimo talón de pago" + "\n- Comprobante de domicilio no mayor a 3 meses");
 })
+
+
+//https://www.tailwindawesome.com/resources/landwind/demo
