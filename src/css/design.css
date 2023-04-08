@@ -1,6 +1,21 @@
 .modal {
     text-align: -webkit-center;
-    display:none;
+    
+}
+
+.modal span {
+    text-align: justify;
+}
+
+.modalDoc {
+    text-align: -webkit-center;
+    display: none;
+}
+
+.modalDoc ul {
+    list-style: inside;
+    text-align: initial;
+    margin-left: 5px;
 }
 
 .titulo {
@@ -17,3 +32,14 @@
     }
 }
 
+@media (max-width: 1080px){
+    .nom {
+     color: red;
+     margin-top: 3px;
+    }
+
+    .sel {
+        margin-top: 3px;
+    }
+
+}
