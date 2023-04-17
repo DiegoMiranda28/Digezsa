@@ -1,5 +1,6 @@
 .modal {
     text-align: -webkit-center;
+    display: none;
 }
 
 .modal span {
