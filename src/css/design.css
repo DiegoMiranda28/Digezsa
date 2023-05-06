@@ -1,6 +1,5 @@
 .modal {
     text-align: -webkit-center;
-    display: none;
 }
 
 .modal span {
@@ -23,10 +22,6 @@
 }
 
 @media (max-width: 768px) {
-    .ctn-tablet {
-        justify-content: center;
-    }
-
     .ctn-menu-tablet {
         margin-top: 5px;
     }

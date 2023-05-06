@@ -1,6 +1,6 @@
 /* Objeto del usuario con todos los datos recabados */
 function ObjetoDerechoHabiente(objetoPersona,objetoLaboral,objetoDomicilio,objetoVivienda,objetoDocumentos,objetoDatosConyuge,objetoLaboralesConyuge,objetoDocumentosConyuge){
-    this.datosPersonales = objetoPersona;
+    this.datosPersonales = objetoPersona; //Variable iguala a los objetos
     this.datosLaborales = objetoLaboral;
     this.datosDomicilio = objetoDomicilio;
     this.datosVivienda = objetoVivienda;
@@ -9,7 +9,8 @@ function ObjetoDerechoHabiente(objetoPersona,objetoLaboral,objetoDomicilio,objet
     this.laboralesConyuge = objetoLaboralesConyuge;
     this.documentosConyuge = objetoDocumentosConyuge;
 }
-/* ========== Objetos de diversos datos ========== */
+
+/* ========== Objeto de datos personales de acuerdo a la base de datos ========== */
 function DatosPersonales(nombre,apellidoPaterno,apellidoMaterno,curp,rfc,nss,estadoCivil,genero,correo){
     this.clave = `DH${index}`;
     this.nombre = nombre;
@@ -23,6 +24,8 @@ function DatosPersonales(nombre,apellidoPaterno,apellidoMaterno,curp,rfc,nss,est
     this.correo = correo;
     this.fechaRegistro = new Date();
 }
+
+/* ========== Objeto de datos laborales  ========== */
 function DatosLaborales(dependencia,organizacion,sueldoBase,nombramiento,numeroBimestres,credito){
     this.dependencia = dependencia;
     this.organizacion = organizacion;
@@ -31,6 +34,7 @@ function DatosLaborales(dependencia,organizacion,sueldoBase,nombramiento,numeroB
     this.numeroBimestres = numeroBimestres;
     this.credito = credito;
 }
+
 function DatosDomicilio(calle,colonia,interior,exterior,codigoPostal,municipio,entidadFederativa,numeroIntegrantes,telefonoParticular,celular){
     this.calle = calle;
     this.colonia = colonia;
@@ -79,7 +83,7 @@ function DatosDocumentosConyuge(credencial,curp,talonPago,domicilio){
 }
 
 /* ========== Variables y botones ========== */
-var index = 1;
+var index = 1; //variable incremental para el numero de solicitud 
 let btn_pre_envio = document.getElementById('input-restriccion');
 
 /* ========== Variable de los campos de entrada ========== */
@@ -88,34 +92,33 @@ var dependencia,organizacio,sueldoBase,nombramiento,bimestres,tipoCredito;
 var calle,colonia,numInterior,numExterior,codigoPostal,municipio,entidadFederativa,numeroIntegrantes,telefonoParticular,celular;
 var adquisicionVivienda,caracteristicasVivienda,entidadVivienda;
 var credencial,curpPdf,talonPago,domicilio;
-
 var nombreConyuge,paternoConyuge,maternoConyuge,curpConyuge,rfcConyuge,nssConyuge,generoConyuge,infonavit;
 var dependenciaConyuge,organizacioConyuge,sueldoConyuge,nombramientoConyuge,bimestresConyuge;
 var credencialConyuge,curpConyugePdf,talonPagoConyuge,domicilioConyuge;
 
 /* ========== Arreglo que guardara los objetos ========== */
-var derechoHabientes = [];
-
-let conyugeHTML = ['label-conyuge','contenedor-conyuge-personal','linea-conyuge','contenedor-laborales-conyuge','label-conyuge2','linea-conyuge2'];
-
+var derechoHabientes = []; //Arreglo que guardara los objetos de Derecho Habiente
+let conyugeHTML = ['label-conyuge','contenedor-conyuge-personal','linea-conyuge',
+'contenedor-laborales-conyuge','label-conyuge2','linea-conyuge2']; //Etiquetas de elementos del HTML que sirven para modificar su estilo de acuerdo a un evento
 /* ========== Funciones que extraen el valor  ========== MIMJ090117HTSRRLA5*/
 function getDatosPersonales(){
-    nombre = document.getElementById('input-nombre').value;
-    apellidoPaterno = document.getElementById('input-apellidoPaterno').value;
+    nombre = document.getElementById('input-nombre').value; //Toda variable que tenga *.value* es para obtener los datos a la hora que se envíen
+    apellidoPaterno = document.getElementById('input-apellidoPaterno').value; 
     apellidoMaterno = document.getElementById('input-apellidoMaterno').value;
     curp = document.getElementById('input-curp').value.toUpperCase();
     rfc = document.getElementById('input-rfc').value.toUpperCase();
     numeroSeguro = document.getElementById('input-nss').value;
     correo = document.getElementById('input-correo').value;
-    estadoCivil = () => {
+    estadoCivil = () => { //variable que guarda una función y obtiene el valor en tiempo real
         let selectEstado = document.getElementById('input-estadoCivil').value;
-        return selectEstado;
+        return selectEstado; // retorna el valor obtenido del evento onChange en tiempo real 
     }
     genero = () => {
         let selectGenero = document.getElementById('input-genero').value;
         return selectGenero;
     }
 }
+
 function getDatosLaborales(){
     dependencia = document.getElementById('input-dependencia').value;
     organizacionSindical = document.getElementById('input-organizacion').value;
@@ -208,24 +211,16 @@ function getDatos(){
     getDocumentosConyuge();
 }
 
-/* ========== Funcion principal para el ingreso de datos ========== */
-/*var enviarBTN = document.getElementById("btn-enviar-sb");
-enviarBTN.addEventListener("submit",function(event){
-    event.preventDefault();
-    enviar();
-})*/
-
-let forms = document.getElementById('form_digezsa');
-forms.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    enviar();
+let forms = document.getElementById('form_digezsa'); //variable que obtiene el id de la etiqueta forms
+forms.addEventListener('submit', async (event) => { //Función del metodo Event de tipo submit, la cual es un método async (asíncrono)
+    event.preventDefault(); //Llamado a un método que previene el recargar la página automaticamente
+    enviar(); //Invocación de la función enviar
 })
 
 function enviar(){
-    getDatos();
-
-    if(btn_pre_envio.checked){
-        if(verificarDatos()){
+    getDatos(); //Función donde se encuentran todos los datos obtenidos
+    if(btn_pre_envio.checked){ //COndición para que debe ser true para que se envien los datos
+        if(verificarDatos()){ //Funcion que al cumplir que los datos no esten incompletos o vacios
         console.log("Formulario enviado");
         var datos_personales = new DatosPersonales(nombre,apellidoPaterno,apellidoMaterno,curp,rfc,numeroSeguro,estadoCivil(),genero(),correo);  
         var datos_laborales = new DatosLaborales(dependencia,organizacionSindical,sueldoBase,nombramiento(),bimestres,tipoCredito());
@@ -235,13 +230,10 @@ function enviar(){
         var datos_laborales_conyuge = new DatosLaboralesConyuge(dependenciaConyuge,organizacioConyuge,sueldoConyuge,nombramientoConyuge(),bimestresConyuge);
         var datos_pdf = new DatosDocumentos(credencial,curpPdf,talonPago,domicilio);
         var datos_pdf_conyuge = new DatosDocumentosConyuge(credencialConyuge,curpConyugePdf,talonPagoConyuge,domicilioConyuge);
-
         var objetoPersonaInformacion = new ObjetoDerechoHabiente(datos_personales,datos_laborales,datos_domicilio,datos_vivienda,datos_pdf,datos_conyuge,datos_laborales_conyuge,datos_pdf_conyuge);
-        derechoHabientes.push(objetoPersonaInformacion);
-
-        
-        limpiarDatosPersonales();
-        index++;
+        derechoHabientes.push(objetoPersonaInformacion); //Introducción el objeto al arreglo
+            limpiarDatosPersonales(); //Limpia los datos de los campos del formulario
+            index++; //Incrementa 1 para identificacion del Derecho Habiente
         }else{
             console.log("ERROR");
         }
@@ -261,13 +253,12 @@ let input_entidad = document.getElementById("input-entidad");
 let input_entidad_vivienda = document.getElementById("input-entidad-vivienda");
 
 function createEntidadFederativa(){
-
-    entidades.forEach(element => {
-        let textNode = document.createTextNode(element);
-        let options = document.createElement("option");
-        options.setAttribute("value",element);
-        options.appendChild(textNode);
-        input_entidad.appendChild(options);
+    entidades.forEach(element => { //Un ciclo que recorre un arreglo con los datos de las entidades por un objeto "Element"
+        let textNode = document.createTextNode(element); //Crear un nodo para la creación de tipo select
+        let options = document.createElement("option"); // Crea la opcion "option" para el select
+        options.setAttribute("value",element); //El valor de option es el elemento que recorre en el arreglo
+        options.appendChild(textNode); //El elemento option agrega el nodo 
+        input_entidad.appendChild(options); //El elemento del select agrega el valor de option y se muestra en el formulario
     });
 
     entidades.forEach(element => {
@@ -278,99 +269,94 @@ function createEntidadFederativa(){
         input_entidad_vivienda.appendChild(options);
     });
 }
-
-createEntidadFederativa();
-
+createEntidadFederativa(); //Se manda a invocar para que este lista al empezar el programa
 /* ========== Funcion para obtener los datos en tiempo real ========== */
 function selectEstadoCivil(){
     let selectEstado = document.getElementById('input-estadoCivil').value;
     let creditoSele = document.getElementById('input-credito');
-
-    console.log("Estado",selectEstado);
-    
     if(selectEstado === "Casado(a)"){
-            creditoSele[1].disabled = false;
+            creditoSele[1].disabled = false; //bloque las opciones de los creditos
             creditoSele[2].disabled = false;
             creditoSele[3].disabled = false; 
-            conyugeHTML.forEach(iden => {
-            var element = document.getElementById(`${iden}`);
-            element.style.display = "block";
-            element.style.display = "flex";
+            conyugeHTML.forEach(iden => { //Recorre el arreglo de elementos HTML
+            var element = document.getElementById(`${iden}`); //Ingresa mediante el id
+            element.style.display = "block"; //Muestra los elementos 
+            element.style.display = "flex"; //Con una estructura tipo flex
             });
     }else{    
             if(selectEstado === "Soltero(a)"){
-                creditoSele[2].disabled = true;
+                creditoSele[2].disabled = true; //Muestra las opciones que puede tener 
                 creditoSele[3].disabled = true;          
             }
                 conyugeHTML.forEach(iden => {
                 var element = document.getElementById(`${iden}`);
-                element.style.display = "none";
+                element.style.display = "none"; //Desaparece los elementos visibles de acuerdo a la respuesta anterior
                 });
     }
         return selectEstado;
 }
 
 function selectCredito(){
-    let creditoSele = document.getElementById('input-credito').value;
+    let creditoSele = document.getElementById('input-credito').value; //Obtiene el valor que se introdujo en el formulario
     console.log("credito",creditoSele);
-    if(creditoSele === "Conyugal" || creditoSele == "Mancomunado"){
+    if(creditoSele === "Conyugal" || creditoSele == "Mancomunado"){ //Entra a una condicion
         document.getElementById('input-estadoCivil').value = "Casado(a)";
        if(creditoSele === "Mancomunado"){
-            document.getElementById("lineC3").style.display = "block";
-            document.getElementById("doc-pdf-html").style.display = "inline-flex";
-            document.getElementById("cnt-pdf-cy").style.display = "flex";
+            document.getElementById("lineC3").style.display = "block"; //El elemento con el id correspondiente es el que se habilita
+            document.getElementById("doc-pdf-html").style.display = "inline-flex"; //Se crea una estructura lineal y ajustable
+            document.getElementById("cnt-pdf-cy").style.display = "flex"; //Se ajusta a la estructura
        }
     }else{
-        document.getElementById("lineC3").style.display = "none";
+        document.getElementById("lineC3").style.display = "none"; //Se bloquean y desaparecen del formulario
         document.getElementById("doc-pdf-html").style.display = "none";
         document.getElementById("cnt-pdf-cy").style.display = "none";
     }
-        return creditoSele;
+        return creditoSele; //Retorna el credito seleccionado en tiempo real
 }
 
 function selectEntidad(input){
     console.log("entidad",input.value);
-    return input.value;
+    return input.value; //Obtiene el valor y lo retorna la entidad en tiempo real 
 }
 
 /* ========== Funciones para validar todos los datos ========== */
 function verificarDatos(){
-    var validar = true;
+    var validar = true; //Variable que será ocupada para las verificaciones
 //MIMJ090117HTSRRLA5
-    if(nombre === ""){
-        validar = false;
+    if(nombre === ""){ //Verifica si el nombre es vacio
+        validar = false; //Retorna falso cuando no cumple con la concidición
     }else{
-            if(!validarApellido(nombre,apellidoPaterno,apellidoMaterno)) validar = false;
+            if(!validarApellido(nombre,apellidoPaterno,apellidoMaterno)) validar = false; //Checa la validación si es diferente de true, se hace false y no procede a obtener los datos
             if(!validarCurpRfcNss(curp,rfc,numeroSeguro)) validar = false;
-            if(!validarCorreo()) validar = false;
+            if(!validarCorreo()) validar = false; //Si son diferentes a true, se hace false y ninguna se ejecuta para el envio de datos
             if(!validarEstado()) validar = false;
             if(!validarDomicilio()) validar = false;
             if(!validarDatosLaborales(dependencia,organizacio,sueldoBase,nombramiento,bimestres)) validar = false;
             if(!validarTipoCredito()) validar = false;
             if(!validarDatosVivienda()) validar = false;
             if(!validarDocumentos(credencial,curpPdf,talonPago,domicilio)) validar = false;
-                if(selectEstadoCivil() === "Casado(a)"){
+                if(selectEstadoCivil() === "Casado(a)"){ //Verificacion para el ingreso de datos del conyuge 
                     console.log("Casado");
                     if(!validarApellido(nombreConyuge,paternoConyuge,maternoConyuge)) validar = false; //cónyuge
                     if(!validarCurpRfcNss(curpConyuge,rfcConyuge,nssConyuge)) validar = false;
                     if(!validarGenero(generoConyuge(),infonavit())) validar = false;
                     if(!validarDatosLaborales(dependenciaConyuge,sueldoConyuge,nombramientoConyuge(),bimestresConyuge)) validar = false;
                         if(selectCredito() === "Mancomunado"){
-                            if(!validarDocumentos(credencialConyuge,curpConyugePdf,talonPagoConyuge,domicilioConyuge)) validar = false;
+                            if(!validarDocumentos(credencialConyuge,curpConyugePdf,talonPagoConyuge,domicilioConyuge)) validar = false; //Condición para checar el apartado de datos
                         }
                 }else{
                     console.log(false);
                 }
     }
-    return validar;
+    return validar; //Retonar el valor para las condiciones anteriores
 }
 
 function validarApellido(nombre,paterno,materno){
     var aux;
-    if(nombre === "" && paterno === "" && materno === ""){
+    if(nombre === "" && paterno === "" && materno === ""){ //Se checan si los datos no son vacios y si lo son, la variable se hace falsa y no se envian los datos
         console.log("Error apellido");
         aux = false;
-    }else if(nombre === "" || paterno === "" || materno === ""){
+    }else if(nombre === "" || paterno === "" || materno === ""){  //Checa que ningun dato quede incompleto
         console.log("Error apellido");
         aux = false;
     }else{
@@ -399,9 +385,9 @@ function validarCurpRfcNss(inCurp,inRfc,inNss){
 
 function validarCorreo(){
     var aux;
-    var regex = /^\b[\w\.-]+@(yahoo|outlook|hotmail|live|gmail)+\.(com)\b$/;
+    var regex = /^\b[\w\.-]+@(yahoo|outlook|hotmail|live|gmail)+\.(com)\b$/; //Se crea una cadena para identificar que la extension sea la correcta
 
-    if(regex.test(correo)){
+    if(regex.test(correo)){ //Si cumple con la funcion ofrecida por el regex se hace correcto y se envian los datos
         aux = true;
     }else if(correo === ""){
         aux = false;
@@ -424,7 +410,6 @@ function validarGenero(inGenero,inInfonavit){
     }
     return aux;
 }
-
 function validarTipoCredito(){
     var aux;
 
@@ -436,7 +421,6 @@ function validarTipoCredito(){
     
     return aux;
 }
-
 function validarEstado(){
     var aux;
     if(estadoCivil() === "Elige una opción" && genero() === "Elige una opción"){
@@ -453,7 +437,8 @@ function validarEstado(){
 function validarCurp(inCurp) {
     var aux;
     var re = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
-        validado = inCurp.match(re);
+        validado = inCurp.match(re); //Se crea una variable que permite checar letra por letra del campo con el re para verificar si existe o es inventado
+                                    //La función checa si es compatible con el regex de cadena
 	
     if (!validado){ //Coincide con el formato general?
     	aux =  false;
@@ -464,14 +449,14 @@ function validarCurp(inCurp) {
         var diccionario  = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
             lngSuma      = 0.0,
             lngDigito    = 0.0;
-        for(var i=0; i<17; i++)
-            lngSuma = lngSuma + diccionario.indexOf(curp17.charAt(i)) * (18 - i);
+        for(var i=0; i<17; i++) //Recorre la cadena y verifica que cada letra se encuentre de manera oficial en su posición
+            lngSuma = lngSuma + diccionario.indexOf(curp17.charAt(i)) * (18 - i); //Checa caracter por caracter y verifica que sea el mismo tamaño de letra 
         lngDigito = 10 - lngSuma % 10;
-        if (lngDigito == 10) return 0;
-        return lngDigito;
+        if (lngDigito == 10) return 0; 
+        return lngDigito; //Retorna el ultimo digito para checarlo de nuevo y se encuentre correcto
     }
   
-    if (validado[2] != digitoVerificador(validado[1])){
+    if (validado[2] != digitoVerificador(validado[1])){ //Se verifica el ultimo digito sea diferente para que sea ingresado de manera oficial
     	aux = false;
     }else{ aux = true}
         
@@ -480,9 +465,9 @@ function validarCurp(inCurp) {
 
 function validarRFC(inRfc){
     var aux;
-    const reg = /^([a-z]{3,4})(\d{2})(\d{2})(\d{2})([0-9a-z]{3})$/i;
+    const reg = /^([a-z]{3,4})(\d{2})(\d{2})(\d{2})([0-9a-z]{3})$/i; //Se crea el regex que verificará que sea escrito de manera oficial
 
-    if(inRfc.match(reg)){
+    if(inRfc.match(reg)){ //Si coincide se hace verdadera y los datos son enviados
         aux = true;
     }else{
         aux = false;
@@ -506,7 +491,6 @@ function validarDomicilio(){
     }
     return aux;
 }
-
 function validarDatosLaborales(inDependencia,inSueldo,inNombramiento,inBimestres){
     var aux;
 
@@ -521,7 +505,6 @@ function validarDatosLaborales(inDependencia,inSueldo,inNombramiento,inBimestres
     }
     return aux;
 }
-
 function validarDatosVivienda(){
     var aux;
 
@@ -537,7 +520,6 @@ function validarDatosVivienda(){
 
     return aux;
 }
-
 function validarDocumentos(credencial,curpPdf,talonPago,domicilio){
     var aux;
     if(credencial === "" && curpPdf === "" && talonPago === "" && domicilio === ""){
@@ -554,7 +536,8 @@ function validarDocumentos(credencial,curpPdf,talonPago,domicilio){
 
 /* ========== Limpiar campos ========== */
 function limpiarDatosPersonales(){
-    document.getElementById('input-nombre').value = "";
+    document.getElementById('input-nombre').value = ""; /*Cada llamada a los elementos por medio del id y tengan *.value* lo que se procede hacer es borrar el texto del
+                                                          campo y formatearlo a vacio */
     document.getElementById('input-apellidoPaterno').value = "";
     document.getElementById('input-apellidoMaterno').value = "";
     document.getElementById('input-curp').value = "";
@@ -656,3 +639,9 @@ btnAviso.addEventListener("click",() => {
 
 
 //https://www.tailwindawesome.com/resources/landwind/demo
+/* ========== Funcion principal para el ingreso de datos ========== */
+/*var enviarBTN = document.getElementById("btn-enviar-sb");
+enviarBTN.addEventListener("submit",function(event){
+    event.preventDefault();
+    enviar();
+})*/
