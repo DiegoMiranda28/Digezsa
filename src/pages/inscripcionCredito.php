@@ -50,7 +50,7 @@
     
 
                                     <!--    Modal aviso  -->
-<div class="fixed top-0 left-0 right-0 z-50 p-4 modal" id="modal">
+<div class="fixed top-0 left-0 right-0 z-50 p-4 modal hidden" id="modal">
   <div class="relative w-full h-full max-w-md md:h-auto">
       <div class="relative bg-white rounded-lg shadow dark:bg-blue-700">
           <div class="p-2 text-center">
@@ -185,9 +185,9 @@
                                     dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     onchange="selectEstadoCivil()">
                                         <option selected disabled hidden>Elige una opción</option>    
-                                        <option value="Soltero(a)">Soltero(a)</option>
-                                        <option value="Casado(a)">Casado(a)</option>
-                                        <option value="Jefe(a) de familia">Jefe(a) de familia</option>
+                                        <option value="Soltera(o)">Soltera(o)</option>
+                                        <option value="Casada(o)">Casada(o)</option>
+                                        <option value="Jefa(e) de familia">Jefa(e) de familia</option>
                                     </select>
                                 </div>
                             </div>
@@ -199,22 +199,56 @@
                                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
                                     dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option selected disabled hidden>Elige una opción</option>
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
+                                        <option value="MASCULINO">Masculino</option>
+                                        <option value="FEMENINO">Femenino</option>
                                     </select>
                                 </div>
                             </div>
                             <!--    contenedor correo  -->
                             <div class="w-full lg:w-5/12 px-4 mt-[-0.5em] md:w-5/12">
-                                <!--    Caja de label e input  -->
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-2" htmlfor="grid-password">Correo electrónico</label>
                                     <input type="email" id="input-correo" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                     text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 lg:mt-[0.1em]" placeholder="Correo...">
                                 </div>
                             </div>
-                        </div>
 
+                             <!--    contenedor fecha de nacimiento  -->
+                            <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-4/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Fecha de nacimiento</label>
+                                    <input type="text" id="input-fechaNacimiento" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="DD-MM-AA">
+                                </div>
+                            </div>
+
+                             <!--    contenedor lugar de nacimiento  -->
+                            <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-4/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Lugar de nacimiento</label>
+                                    <input type="text" id="input-lugarNacimiento" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="Lugar nacimiento...">
+                                </div>
+                            </div>
+
+                             <!--    contenedor tipo de crédito pendiente en BASE DE DATOS -->
+                            <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-4/12">
+                            <div class="relative w-full mb-3">
+                                <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1" htmlfor="grid-password">Linea de crédito</label>
+                                <select id="input-credito" class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg 
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
+                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                onchange="selectCredito()">
+                                    <option selected disabled hidden>Elige una opción</option>
+                                    <option value="INDIVIDUAL">Crédito individual</option>
+                                    <option value="CONYUGAL">Crédito conyugal</option>
+                                    <option value="MANCOMUNADO">Crédito mancomunado</option>
+                                </select>
+                            </div>
+                            </div>
+
+                        </div>
+                        
                         <hr class="mt-6 border-b-1 border-gray-600">
 
                         <!-- ==================== DATOS LABORALES ==================== -->
@@ -241,20 +275,20 @@
                                 </div>
                             </div>
                             <!--    contenedor nombramiento  -->
-                            <div class="w-full lg:w-3/12 px-4 mt-[-0.5em] md:w-3/12">
+                            <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-3/12">
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1" htmlfor="grid-password">Nombramiento</label>
                                     <select id="input-nombramiento" class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg 
                                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
                                     dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option selected disabled hidden>Elige una opción</option>
-                                        <option value="Base">Base</option>
-                                        <option value="Confianza">Confianza</option>
+                                        <option value="BASE">Base</option>
+                                        <option value="CONFIANZA">Confianza</option>
                                     </select>
                                 </div>
                             </div>
                             <!--    contenedor sueldo  -->
-                            <div class="w-full lg:w-5/12 px-4 mt-[-0.5em] md:w-6/12">
+                            <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1" htmlfor="grid-password">
                                         Sueldo base de cotización quincenal
@@ -263,30 +297,31 @@
                                     text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="$ ...">
                                 </div>
                             </div>
-                            <!--    contenedor tipo de crédito pendiente en BASE DE DATOS -->
-                            <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-4/12">
-                            <div class="relative w-full mb-3">
-                                <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1" htmlfor="grid-password">Tipo de crédito</label>
-                                <select id="input-credito" class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg 
-                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
-                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                onchange="selectCredito()">
-                                    <option selected disabled hidden>Elige una opción</option>
-                                    <option value="Tradicional">Crédito tradicional</option>
-                                    <option value="Conyugal">Crédito conyugal</option>
-                                    <option value="Mancomunado">Crédito mancomunado</option>
-                                </select>
-                            </div>
-                            </div>
+                           
                             <!--    contenedor bimestres  -->
-                            <div class="w-full lg:w-5/12 px-4 mt-[-0.5em] md:w-5/12">
+                            <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-5/12">
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1" htmlfor="grid-password">numero de bimestres cotizados</label>
                                     <input type="number" id="input-bimestres" class="border-0 px-5 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                     text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="....">
                                 </div>
                             </div>
+                        
+                            <!--    contenedor entidad federativa  -->
+                            <div class="w-full xl:w-4/12 lg:w-4/12 px-4 mt-[-0.5em] md:w-4/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1" htmlfor="grid-password">Entidad federativa</label>
+                                    <select id="input-entidad-laboral" class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg 
+                                    focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
+                                    dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    onchange="selectEntidad(this)">
+                                        <option selected disabled hidden>Elige una opción</option>
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
+
                         <hr class="mt-6 border-b-1 border-gray-600">
 
                         <!-- ==================== DATOS DOMICILIO ==================== -->
@@ -393,7 +428,7 @@
                         <hr class="mt-6 border-b-1 border-gray-600">
 
                         <!-- ==================== DATOS PERSONALES CONYUGE ==================== -->
-                        <h6 class="text-gray-700 text-lg mt-1 mb-6 font-bold uppercase hidden" id="label-conyuge">Datos personales del cónyuge</h6>   
+                        <h6 class="text-orange-800 text-lg mt-1 mb-6 font-bold uppercase hidden" id="label-conyuge">Datos personales del cónyuge</h6>   
                         <div class="flex-wrap hidden" id="contenedor-conyuge-personal">   
                             <!--    contenedor nombre conyuge  -->
                             <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-4/12">
@@ -454,8 +489,8 @@
                                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
                                     dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option value="" selected disabled hidden>Elige una opción</option>
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
+                                        <option value="MASCULINO">Masculino</option>
+                                        <option value="FEMENINO">Femenino</option>
                                     </select>
                                 </div>
                             </div>
@@ -467,16 +502,44 @@
                                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
                                     dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option value="" selected disabled hidden>Elige una opción</option>
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
+                                        <option value="SI">Si</option>
+                                        <option value="NO">No</option>
                                     </select>
                                 </div>
                             </div>
+
+                            <!--    contenedor correo  -->
+                            <div class="w-full lg:w-5/12 px-4 mt-[-0.5em] md:w-5/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1" htmlfor="grid-password">Correo electrónico</label>
+                                    <input type="email" id="input-correo-conyuge" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 lg:mt-[0.1em]" placeholder="Correo...">
+                                </div>
+                            </div>
+
+                             <!--    contenedor fecha de nacimiento  -->
+                            <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-4/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Fecha de nacimiento</label>
+                                    <input type="text" id="input-fechaNacimiento-conyuge" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="DD-MM-AA">
+                                </div>
+                            </div>
+
+                             <!--    contenedor lugar de nacimiento  -->
+                            <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-4/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Lugar de nacimiento</label>
+                                    <input type="text" id="input-lugarNacimiento-conyuge" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="Lugar nacimiento...">
+                                </div>
+                            </div>
+
                         </div>       
                         <hr class="mt-6 border-b-1 border-gray-600 hidden" id="linea-conyuge">
 
                         <!-- ==================== DATOS LABORALES CONYUGE ==================== -->
-                        <h6 class="text-gray-700 text-lg mt-1 mb-6 font-bold uppercase hidden" id="label-conyuge2">Datos laborales del cónyuge</h6>
+                        <h6 class="text-orange-800 text-lg mt-1 mb-6 font-bold uppercase hidden" id="label-conyuge2">Datos laborales del cónyuge</h6>
                         <div class="flex-wrap none hidden" id="contenedor-laborales-conyuge">
                             <!--    contenedor dependencia conyuge  -->
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] md:w-6/12">
@@ -508,8 +571,8 @@
                                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
                                     dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option value="" selected disabled hidden>Elige una opción</option>
-                                        <option value="Base">Base</option>
-                                        <option value="Confianza">Confianza</option>
+                                        <option value="BASE">Base</option>
+                                        <option value="CONFIANZA">Confianza</option>
                                     </select>
                                 </div>
                             </div>
@@ -538,90 +601,9 @@
 
                         <hr class="mt-6 border-b-1 border-gray-600 hidden" id="linea-conyuge2">
 
-                        <!-- ==================== DATOS VIVIENDA ==================== -->
-                        <h6 class="text-gray-700 text-lg mt-1 mb-6 font-bold uppercase">Datos del crédito hipotecario que solicita</h6>
-                        <div class="flex flex-wrap">
-                            <!--    contenedor adquisicion de vivienda  -->
-                            <div class="w-full xl:w-4/12 lg:w-4/12 px-4 mt-[-0.5em] md:w-6/12">
-                                <div class="relative w-full mb-3">
-                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Adquisición de vivienda</label>
-                                    <select id="input-vivienda" class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg 
-                                    focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
-                                    dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected disabled hidden>Elige una opción</option>
-                                        <option value="Nueva">Nueva</option>
-                                        <option value="Usada">Usada</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="w-full xl:w-2/12 lg:w-2/12 px-4 mt-[-0.5em] md:hidden"></div>
-                            <!--    contenedor entidad de la vivienda  -->
-                            <div class="w-full xl:w-6/12 lg:w-6/12 px-4 mt-[-0.5em] md:w-6/12">
-                                <div class="relative w-full mb-3">
-                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">
-                                        Entidad federativa a ejercer
-                                    </label>
-                                    <select id="input-entidad-vivienda" class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg 
-                                    focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
-                                    dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    onchange="selectEntidad(this)">
-                                        <option selected disabled hidden>Elige una opción</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!--    contenedor caracteristicas de la vivienda  -->
-                            <div class="w-full xl:w-8/12 lg:w-12/12 px-4 mt-[-0.5em]">
-                                <div class="relative w-full mb-3">
-                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1" htmlfor="grid-password">Especificaciones de vivienda</label>
-                                    <textarea rows="4" id="input-caracteristicas" class="block p-2.5 w-full text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 
-                                    focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white 
-                                    dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none" placeholder="Escribe tus especificaciones..."></textarea>
-
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="mt-6 border-b-1 border-gray-600">
-                        <!-- ==================== DOCUMENTOS PDF ==================== -->
-                        <div class="inline-flex justify-between w-full">    
-                            <h6 class="text-gray-700 text-lg mt-1 mb-6 font-bold uppercase">Adjuntar documentos actualizados</h6>
-                        </div>
-
-                        <div class="flex flex-wrap">
-                            <!--    contenedor de la credencial  -->
-                            <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
-                                <div class="relative w-full mb-3">
-                                    <label class="xl:w-6/12 lg:w-6/12 md:w-8/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-2/12 sm:w-4/12" for="user_avatar">Identificación oficial</label>
-                                    <input id="input-credencial-pdf" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
-                                </div>
-                            </div>
-                            <!--    contenedor del curp  -->
-                            <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
-                                <div class="relative w-full mb-3">
-                                    <label class="xl:w-6/12 lg:w-6/12 md:w-6/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-2/12 mt-1 sm:w-4/12" for="user_avatar">CURP formato PDF</label>
-                                    <input id="input-curp-pdf" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
-                                </div>
-                            </div>
-                            <!--    contenedor de talon de pago  -->
-                            <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
-                                <div class="relative w-full mb-3">
-                                    <label class="xl:w-8/12 lg:w-8/12 md:w-8/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-2/12 mt-1 sm:w-4/12" for="user_avatar">Ultimo talón de pago</label>
-                                    <input id="input-pago-pdf" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
-                                </div>
-                            </div>
-                            <!--    contenedor de comprobante de domicilio  -->
-                            <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
-                                <div class="relative w-full mb-3">
-                                    <label class="xl:w-8/12 lg:w-8/12 md:w-9/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-4/12 mt-1 sm:w-5/12" for="user_avatar">Comprobante de domicilio</label>
-                                    <input id="input-comprobante-pdf" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="mt-6 border-b-1 border-gray-600 hidden" id="lineC3">
-
-                        <!-- ==================== DOCUMENTOS PDF ==================== -->
+                        <!-- ==================== DOCUMENTOS PDF CONYUGE ==================== -->
                         <div class="justify-between w-full hidden" id="doc-pdf-html">    
-                            <h6 class="text-gray-700 text-lg mt-1 mb-6 font-bold uppercase">Adjuntar documentos actualizados cónyuge</h6>
+                            <h6 class="text-orange-800 text-lg mt-1 mb-6 font-bold uppercase">Adjuntar documentos actualizados cónyuge</h6>
                         </div>
 
                         <div class="flex-wrap hidden" id="cnt-pdf-cy">
@@ -656,9 +638,228 @@
                                     <input id="domicilio-conyuge" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
+                            
                         </div>
 
+                        <hr class="mt-6 border-b-1 border-gray-600 hidden" id="linea-doc-conyuge">
+                                    
+                        <!-- ==================== DATOS DEL CRÉDITO  ==================== -->
+                        <h6 class="text-gray-700 text-lg mt-1 mb-6 font-bold uppercase">Datos personales del acréditado</h6>
+                        <div class="flex flex-wrap">               
+                            
+                            <!--    contenedor adquisicion de vivienda  -->
+                            <div class="w-full xl:w-4/12 lg:w-4/12 px-4 mt-[-0.5em] md:w-6/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Modalidad</label>
+                                    <select id="input-credito-vivienda" class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg 
+                                    focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
+                                    dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option selected disabled hidden>Elige una opción</option>
+                                        <option value="VIVIENDA NUEVA">Nueva</option>
+                                        <option value="VIVIENDA USADA">Usada</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                             <!--    contenedor tipo de crédito  -->
+                             <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-4/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 " htmlfor="grid-password">Tipo de crédito</label>
+                                    <select id="input-credito-tipo" class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg 
+                                    focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
+                                    dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    onchange="selectTipoCredito()">
+                                        <option selected disabled hidden>Elige una opción</option>    
+                                        <option value="ADQUISICION">Adquisición</option>
+                                        <option value="CONSTRUCCION">Construcción</option>
+                                        <option value="REDENCION DE PASIVOS">Redención de pasivos</option>
+                                    </select>
+                                </div>
+                             </div>
+
+                             <!--    contenedor entidad federativa  -->
+                             <div class="w-full xl:w-4/12 lg:w-4/12 px-4 mt-[-0.5em] md:w-4/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Entidad federativa</label>
+                                    <select id="input-credito-entidad" class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg 
+                                    focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
+                                    dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    onchange="selectEntidad(this)">
+                                        <option selected disabled hidden>Elige una opción</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                           
+                            
+
+                        </div>
+                        
                         <hr class="mt-6 border-b-1 border-gray-600">
+                            
+                        <!-- ==================== DATOS VIVIENDA ==================== -->
+                        <h6 class="text-gray-700 text-lg mt-1 mb-6 font-bold uppercase">Especificaciones de vivienda</h6>
+                        <div class="flex flex-wrap">
+                            <!--    contenedor adquisicion de vivienda  -->
+                            <div class="w-full xl:w-4/12 lg:w-4/12 px-4 mt-[-0.5em] md:w-6/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Modalidad</label>
+                                    <select id="input-vivienda" class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg 
+                                    focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
+                                    dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option selected disabled hidden>Elige una opción</option>
+                                        <option value="VIVIENDA NUEVA">Nueva</option>
+                                        <option value="VIVIENDA USADA">Usada</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="w-full xl:w-2/12 lg:w-2/12 px-4 mt-[-0.5em] md:hidden"></div>
+                            <!--    contenedor entidad de la vivienda  -->
+                            <div class="w-full xl:w-4/12 lg:w-6/12 px-4 mt-[-0.5em] md:w-6/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">
+                                        Entidad federativa a ejercer
+                                    </label>
+                                    <select id="input-entidad-vivienda" class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg 
+                                    focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
+                                    dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    onchange="selectEntidad(this)">
+                                        <option selected disabled hidden>Elige una opción</option>
+                                    </select>
+                                </div>
+                            </div>
+                           
+                            <!--    contenedor municipio de la vivienda  pendiente-->
+                            <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-6/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Municipio</label>
+                                    <input type="text" id="input-vivienda-municipio" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 " placeholder="Municipio...">
+                                </div>
+                            </div>
+
+                            <!--    contenedor terreno mts  -->
+                            <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-6/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Terreno mts<sup>2</sup></label>
+                                    <input type="text" id="input-vivienda-terreno" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 " placeholder="...">
+                                </div>
+                            </div>
+
+                            <!--    contenedor habitable mts  -->
+                            <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-6/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Habitable mts<sup>2</sup></label>
+                                    <input type="text" id="input-vivienda-habitable" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 " placeholder="...">
+                                </div>
+                            </div>
+
+
+                            <!--    contenedor pisos   -->
+                            <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-6/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Pisos</label>
+                                    <input type="text" id="input-vivienda-pisos" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 " placeholder="...">
+                                </div>
+                            </div>
+
+                            <!--    contenedor cochera  -->
+                            <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-4/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1 xl:mt-1" htmlfor="grid-password">¿Cochera?</label>
+                                    <select id="input-vivienda-cochera" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                                    focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
+                                    dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option value="" selected disabled hidden>Elige una opción</option>
+                                        <option value="SI">Si</option>
+                                        <option value="NO">No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!--    contenedor alberca  -->
+                            <div class="w-full lg:w-4/12 px-4 mt-[-0.5em] md:w-4/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1 xl:mt-1" htmlfor="grid-password">¿Alberca?</label>
+                                    <select id="input-vivienda-alberca" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                                    focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
+                                    dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option value="" selected disabled hidden>Elige una opción</option>
+                                        <option value="SI">Si</option>
+                                        <option value="NO">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                           
+                            <!--    contenedor caracteristicas de la vivienda  -->
+                            <div class="w-full xl:w-8/12 lg:w-12/12 px-4 mt-[-0.5em]">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1" htmlfor="grid-password">Especificaciones de vivienda</label>
+                                    <textarea rows="4" id="input-caracteristicas" class="block p-2.5 w-full text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 
+                                    focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white 
+                                    dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none" placeholder="Escribe tus especificaciones..."></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr class="mt-6 border-b-1 border-gray-600">
+
+                        <!-- ==================== DOCUMENTOS PDF ==================== -->
+                        <div class="inline-flex justify-between w-full">    
+                            <h6 class="text-gray-700 text-lg mt-1 mb-6 font-bold uppercase">Adjuntar documentos actualizados</h6>
+                        </div>
+
+                        <div class="flex flex-wrap">
+                            <!--    contenedor de la credencial  -->
+                            <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="xl:w-6/12 lg:w-6/12 md:w-8/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-2/12 sm:w-4/12" for="user_avatar">Identificación oficial</label>
+                                    <input id="input-credencial-pdf" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
+                                </div>
+                            </div>
+                            <!--    contenedor del curp  -->
+                            <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="xl:w-6/12 lg:w-6/12 md:w-6/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-2/12 mt-1 sm:w-4/12" for="user_avatar">CURP formato PDF</label>
+                                    <input id="input-curp-pdf" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
+                                </div>
+                            </div>
+                            <!--    contenedor de talon de pago  -->
+                            <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="xl:w-8/12 lg:w-8/12 md:w-8/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-2/12 mt-1 sm:w-4/12" for="user_avatar">Ultimo talón de pago</label>
+                                    <input id="input-pago-pdf" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
+                                </div>
+                            </div>
+                            <!--    contenedor de comprobante de domicilio  -->
+                            <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="xl:w-8/12 lg:w-8/12 md:w-9/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-4/12 mt-1 sm:w-5/12" for="user_avatar">Comprobante de domicilio</label>
+                                    <input id="input-comprobante-pdf" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
+                                </div>
+                            </div>
+                            <!--    contenedor de rfc  -->
+                            <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="xl:w-8/12 lg:w-8/12 md:w-9/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-4/12 mt-1 sm:w-5/12" for="user_avatar">RFC formato PDF</label>
+                                    <input id="input-rfc-pdf" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
+                                </div>
+                            </div>
+                            <!--    contenedor de acta de nacimiento  -->
+                            <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="xl:w-8/12 lg:w-8/12 md:w-9/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-4/12 mt-1 sm:w-5/12" for="user_avatar">Acta de nacimiento</label>
+                                    <input id="input-acta-pdf" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <hr class="mt-6 border-b-1 border-gray-600 hidden" id="lineC3">
 
                         <!-- ===== BOTONES DE ENVIO Y ACEPTACIÓN ===== -->
                         <div class="flex flex-wrap h-4">
