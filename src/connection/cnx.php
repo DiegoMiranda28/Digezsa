@@ -7,6 +7,75 @@
             $database = 'pruebaDigezsa';
             $username = 'DiegoMirand';
             $password = 'Diego2812++';
+    
+            try {
+                self::$connection = new PDO("sqlsrv:Server=$host;Database=$database", $username, $password);
+                echo "Conexion segura";
+                return self::$connection;
+            } catch (PDOException $exp) {
+                throw new Exception("No se logró conectar a la base de datos: " . $exp->getMessage());
+            }
+        }
+
+       /* public static function insertarPrueba($nombre,$curp,$fecha){
+            try{
+            $conexion = self::conexionDB();
+            $stmt = $conexion->prepare("INSERT INTO prueba (nombre,curp,fecha) VALUES (:nombre,:curp,:fecha)");
+
+            $stmt->bindParam(':nombre', $nombre);
+            $stmt->bindParam(':curp', $curp);
+            $stmt->bindParam(':fecha', $fecha);
+
+            $stmt->execute();
+
+            $conexion = null;
+
+            echo "Datos insertados exitosamente.";
+            } catch (PDOException $e) {
+                throw new Exception("Error al insertar los datos: " . $e->getMessage());
+            }
+        }
+    
+        /*public static function conexionDB() {
+            $host = 'LAPTOP-193LCMSG'; #Link
+            $database = 'pruebaDigezsa'; #abacapital
+            $username = 'DiegoMirand'; #Usuario wpp
+            $password = 'Diego2812++'; #contraseña wpp
+
+            try {
+                self::$connection = new PDO ("sqlsrv:Server=$host;Database=$database",$username,$password);
+                echo "Conexion segura";
+            }catch (PDOException $exp){
+                echo ("No se logro conectar:$database,error:$exp");
+            }
+            return self::$connection;
+        }*/
+
+/*    public static function insertPrueba(){
+            try{
+            
+                $nombre = $_POST["nombre"];
+                $curp = $_POST["curp"];
+                $fecha =  $_POST["fecha"];
+
+                $connection = self::conexionDB();
+
+                $consulta = $connection->prepare("INSERT INTO prueba(nombre,curp,fecha) VALUES ($nombre,'$curp','$fecha')");
+        
+                $consulta->execute();
+
+            }catch(PDOException $exp){
+                echo "Error: " . $exp->getMessage();
+            }
+
+            return $connection;
+        }
+
+       /* public static function conexionDBA() {
+            $host = 'abacapital.mssql.somee.com'; #Link
+            $database = 'abacapital'; #abacapital
+            $username = 'jaredrosas_SQLLogin_1'; #Usuario wpp
+            $password = 'e4d7nl9d6d'; #contraseña wpp año-mes-dia Set Languaje Spanish para todo
 
             try {
                 self::$connection = new PDO ("sqlsrv:Server=$host;Database=$database",$username,$password);
@@ -16,115 +85,25 @@
             }
             return self::$connection;
         }
-        public static function insertarDH($fecha, $solicitud, $nombre, $paterno, $materno, $curp,
-        $rfc, $nss, $estadoCivil, $genero, $email){
-            try{
-                $connection = self::conexionDB();
-                $consulta = $connection->prepare("INSERT INTO datosPersonalesDH(fecha_registro
-                ,numero_solicitud,nombre,apellido_paterno,apellido_materno,curp,rfc,nss,estado_civil,
-                genero,email) VALUES ($fecha,$solicitud,$nombre,$paterno,$materno,$curp,$rfc,$nss,
-                $estadoCivil,$genero,$email)");
-                $consulta->execute();
-            }catch(PDOException $exp){
-                echo ("Error en:$exp");
-            }
-            return self::$connection;
-        }
-        public static function insertLaboralesDH($rfc, $dependencia, $organizacion_sindical, $nombramiento,
-        $sueldo, $tipo_credito, $bimestres){
-            try{
-                $connection = self::conexionDB();
-                $consulta = $connection->prepare("INSERT INTO datosLaboralesDH(rfc,dependencia,
-                organizacion_sindical,nombramiento,sueldo,tipo_credito,bimestres) VALUES ($rfc,$dependencia,
-                $organizacion_sindical,$nombramiento,$sueldo,$tipo_credito,$bimestres)");
-                $consulta->execute();
-            }catch(PDOException $exp){
-                echo ("Error en:$exp");
-            }
-            return self::$connection;
-        }        
 
-        public static function insertDomicilio($solicitud, $curp, $calle, $colonia, $interior, $exterior,
-        $codigoPostal, $municipio, $entidadFederativa, $telParticular, $celular, $familia){
+        public static function insertPersona(){
             try{
-                $connection = self::conexionDB();
-                $consulta = $connection->prepare("INSERT INTO datosDomicilioDH(solicitud,curp,calle,colonia,
-                numero_interior,numero_exterior,codigo_postal,municipio,entidad_federativa,
-                telefono_particular,celular,integrantes_familia) VALUES ($solicitud, $curp, $calle, $colonia, 
-                $interior, $exterior, $codigoPostal, $municipio, $entidadFederativa, $telParticular, $celular, 
-                $familia)");
+                $connection = self::conexionDBA();
+                $consulta = $connection->prepare("INSERT INTO solicitud(rfc,solicitud) VALUES ('HECM9305157XX','000000000000')");
+        
                 $consulta->execute();
+                
+                // Obtener los datos insertados
+                $consultaInsertada = $connection->query("SELECT TOP 1 * FROM solicitud ORDER BY rfc DESC");
+                $datosInsertados = $consultaInsertada->fetch(PDO::FETCH_ASSOC);
+                
+                // Mostrar los datos insertados
+                print_r($datosInsertados);
             }catch(PDOException $exp){
-                echo ("Error en:$exp");
+                echo "Error: " . $exp->getMessage();
             }
             return self::$connection;
-        }
-
-        public static function insertVivienda($rfc, $curp, $adVivienda, $entFederativa, $espVivienda){
-            try{
-                $connection = self::conexionDB();
-                $consulta = $connection->prepare("INSERT INTO datosDomicilioDH(rfc,curp,adquisicion_vivienda,
-                entidad_federativa,especificacion_vivienda) VALUES ($rfc, $curp, $adVivienda,$entFederativa, $espVivienda)");
-                $consulta->execute();
-            }catch(PDOException $exp){
-                echo ("Error en:$exp");
-            }
-            return self::$connection;
-        }
-
-        public static function insertDocumentosDH($solicitud, $curp, $credencial, $curpPdf, $pago, $domicilio){
-            try{
-                $connection = self::conexionDB();
-                $consulta = $connection->prepare("INSERT INTO datosDocumentosDH(numero_solicitud,curp,
-                identificacion_oficial,curp_pdf,talon_pago,comprobante_domicilio) VALUES ($solicitud, $curp, 
-                $credencial, $curpPdf, $pago, $domicilio)");
-                $consulta->execute();
-            }catch(PDOException $exp){
-                echo ("Error en:$exp");
-            }
-            return self::$connection;
-        }
-
-        public static function insertPersonalesConyuge($solicitud, $curp, $nombre, $paterno, $materno, $curpCony,
-        $rfc, $nss, $genero, $infonavit){
-            try{
-                $connection = self::conexionDB();
-                $consulta = $connection->prepare("INSERT INTO datosPersonalesConyuge(num_solicitud,curpDH,nombre,
-                apellido_paterno,apellido_materno,curp,rfc,nss,genero,infonavit) VALUES ($solicitud, $curp, $nombre, 
-                $paterno, $materno, $curpCony, $rfc, $nss, $genero, $infonavit)");
-                $consulta->execute();
-            }catch(PDOException $exp){
-                echo ("Error en:$exp");
-            }
-            return self::$connection;
-        }
-
-        public static function insertLaboralesConyuge($rfcCon, $dependencia, $orgSindical, $nombramiento, $sueldo, 
-        $bimestres){
-            try{
-                $connection = self::conexionDB();
-                $consulta = $connection->prepare("INSERT INTO datosLaboralesConyuge(rfcConyuge,dependencia,
-                organizacion_sindical,nombramiento,sueldo,bimestres) VALUES ($rfcCon, $dependencia, $orgSindical, 
-                $nombramiento, $sueldo, $bimestres)");
-                $consulta->execute();
-            }catch(PDOException $exp){
-                echo ("Error en:$exp");
-            }
-            return self::$connection;
-        }
-
-        public static function insertDocumentosConyuge($curp, $rfc, $credencial, $curpPdf, $pago, $domicilio){
-            try{
-                $connection = self::conexionDB();
-                $consulta = $connection->prepare("INSERT INTO datosDocumentosConyuge(curp,rfc,identificacion_oficial,
-                curp_pdf,talon_pago,comprobante_domicilio) VALUES ($curp, $rfc, $credencial, $curpPdf, $pago, $domicilio)");
-                $consulta->execute();
-            }catch(PDOException $exp){
-                echo ("Error en:$exp");
-            }
-            return self::$connection;
-        }
-
+        }*/
         
     }
 ?>

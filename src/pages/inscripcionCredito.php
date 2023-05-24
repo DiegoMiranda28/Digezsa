@@ -7,6 +7,7 @@
     <link href="../css/output.css" rel="stylesheet">
     <link href="../css/design.css" rel="stylesheet">
     <link rel="shortcut icon" href="../img/DIGESZA.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Inscripción - Digesza</title>
 </head>
 
@@ -46,8 +47,30 @@
                     </ul>
             </div>
         </nav>
-</header>
-    
+</header>    
+
+<!--    Modal error  -->
+<div class="fixed top-0 left-0 right-0 z-50 p-4 modal hidden" id="modalError">
+  <div class="relative w-full h-full max-w-md md:h-auto">
+      <div class="relative bg-white rounded-lg shadow dark:bg-blue-700">
+          <div class="p-2 text-center">
+              <svg fill="none" class="mx-auto mb-2 text-red-600 w-14 h-14 dark:text-red-600" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+              <span class="mb-3 text-lg font-normal dark:text-white bold" id="modal-txt">
+                Verifique los datos, puede que tenga datos vacios, algunos datos sean incorrectos
+                o algunos datos duplicados. Recuerda que si tienes cónyuge no tiene que llevar el mismo
+                RFC que el Derecho Habiente.
+              </span> 
+              <div>
+                <button data-modal-hide="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 
+                focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-base inline-flex items-center
+                px-5 py-2.5 text-center mr-5 mt-6" id="btn-err">Ok!</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 
                                     <!--    Modal aviso  -->
 <div class="fixed top-0 left-0 right-0 z-50 p-4 modal hidden" id="modal">
@@ -85,6 +108,8 @@
                     <li>Curp actualizado.</li>
                     <li>Último talón de pago.</li>
                     <li>Comprobante de domicilio no mayor a 3 meses.</li>
+                    <li>RFC actualizado</li>
+                    <li>Acta de nacimiento en formato PDF</li>
                 </ul>
                 <button data-modal-hide="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 
                 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-base inline-flex items-center
@@ -118,7 +143,7 @@
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
 
                     <form id="form_digezsa">
-                                    
+
                         <!-- ==================== DATOS PERSONALES ==================== -->
                         <h6 class="text-gray-700 text-lg mt-1 mb-6 font-bold uppercase">Datos personales del acréditado</h6>
                         <div class="flex flex-wrap">                       
@@ -218,7 +243,7 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Fecha de nacimiento</label>
                                     <input type="text" id="input-fechaNacimiento" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
-                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="DD-MM-AA">
+                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="DD-MM-AA"  minlength="10" maxlength="10">
                                 </div>
                             </div>
 
@@ -293,8 +318,9 @@
                                     <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1" htmlfor="grid-password">
                                         Sueldo base de cotización quincenal
                                     </label>
-                                    <input type="number" id="input-sueldoBase" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
-                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="$ ...">
+                                    <input type="number" step="0.01" id="input-sueldoBase" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="$ ..."
+                                    onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                                 </div>
                             </div>
                            
@@ -303,7 +329,8 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1" htmlfor="grid-password">numero de bimestres cotizados</label>
                                     <input type="number" id="input-bimestres" class="border-0 px-5 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
-                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="....">
+                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="...."
+                                    onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                                 </div>
                             </div>
                         
@@ -353,7 +380,7 @@
                                             <div class="flex items-center">
                                                 <label class="py-3 ml-1 text-xs font-medium text-gray-900 dark:text-gray-300 w-[4em]">Interior:</label>
                                                 <input type="number" id="input-interior" class="border-4 px-1 py-0 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
-                                                text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150 mt-[-0.2em] w-[4.5em] ml-2">
+                                                text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150 mt-[-0.2em] w-[4.5em] ml-2" minlength="5" maxlength="5">
                                             </div>
                                         </li>
 
@@ -361,7 +388,7 @@
                                             <div class="flex items-center">
                                                 <label class="py-3 ml-1 text-xs font-medium text-gray-900 dark:text-gray-300 w-[4em]">Exterior:</label>
                                                 <input type="number" id="input-exterior" class="border-4 px-1 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
-                                                text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150 mt-[-0.2em] w-[4.5em] ml-2">
+                                                text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150 mt-[-0.2em] w-[4.5em] ml-2" minlength="5" maxlength="5">
                                             </div>
                                         </li> 
 
@@ -421,7 +448,7 @@
                                     <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1" htmlfor="grid-password">Número de integrantes de familia</label>
                                     <input type="tel" id="input-integrantes" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                     w-full text-base shadow focus:outline-none focus:ring ease-linear transition-all duration-150  xl:mt-[0.1em]" 
-                                    onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="# ...">
+                                    onkeypress='return event.charCode >= 48 && event.charCode <= 57' oninput="limitarValores(this,11)" placeholder="# ...">
                                 </div>
                             </div>
                         </div>
@@ -478,7 +505,7 @@
                                     <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1" htmlfor="grid-password">NSS</label>
                                     <input type="tel" id="input-nss-conyuge" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                     text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                    minlength="11" maxlength="11" placeholder="NSS...">
+                                    minlength="11" maxlength="11" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="NSS...">
                                 </div>
                             </div> 
                             <!--    contenedor genero conyuge  -->
@@ -522,7 +549,7 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Fecha de nacimiento</label>
                                     <input type="text" id="input-fechaNacimiento-conyuge" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
-                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="DD-MM-AA">
+                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="DD-MM-AA" minlength="10" maxlength="10">
                                 </div>
                             </div>
 
@@ -583,7 +610,7 @@
                                     <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1" htmlfor="grid-password">
                                         Sueldo base de cotización quincenal
                                     </label>
-                                    <input type="tel" id="input-sueldo-conyuge" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
+                                    <input type="tel" step="0.01" id="input-sueldo-conyuge" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
                                     text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" 
                                     onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="$...">
                                 </div>
@@ -597,6 +624,20 @@
                                     text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder=" ...">
                                 </div>
                             </div>
+
+                            <!--    contenedor entidad federativa  -->
+                            <div class="w-full xl:w-3/12 lg:w-4/12 px-4 mt-[-0.5em] md:w-4/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2 mt-1" htmlfor="grid-password">Entidad federativa</label>
+                                    <select id="entidad-laboral-conyuge" class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg 
+                                    focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
+                                    dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    onchange="selectEntidad(this)">
+                                        <option selected disabled hidden>Elige una opción</option>
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
 
                         <hr class="mt-6 border-b-1 border-gray-600 hidden" id="linea-conyuge2">
@@ -638,13 +679,28 @@
                                     <input id="domicilio-conyuge" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
+
+                             <!--    contenedor de rfc  -->
+                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="xl:w-8/12 lg:w-8/12 md:w-9/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-4/12 mt-1 sm:w-5/12" for="user_avatar">RFC formato PDF</label>
+                                    <input id="input-rfc-conyuge" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
+                                </div>
+                            </div>
+                            <!--    contenedor de acta de nacimiento  -->
+                            <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
+                                <div class="relative w-full mb-3">
+                                    <label class="xl:w-8/12 lg:w-8/12 md:w-9/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-4/12 mt-1 sm:w-5/12" for="user_avatar">Acta de nacimiento</label>
+                                    <input id="input-acta-conyuge" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
+                                </div>
+                            </div>
                             
                         </div>
 
                         <hr class="mt-6 border-b-1 border-gray-600 hidden" id="linea-doc-conyuge">
                                     
                         <!-- ==================== DATOS DEL CRÉDITO  ==================== -->
-                        <h6 class="text-gray-700 text-lg mt-1 mb-6 font-bold uppercase">Datos personales del acréditado</h6>
+                        <h6 class="text-gray-700 text-lg mt-1 mb-6 font-bold uppercase">Datos del crédito solicitado</h6>
                         <div class="flex flex-wrap">               
                             
                             <!--    contenedor adquisicion de vivienda  -->
@@ -676,7 +732,7 @@
                                     </select>
                                 </div>
                              </div>
-
+                             
                              <!--    contenedor entidad federativa  -->
                              <div class="w-full xl:w-4/12 lg:w-4/12 px-4 mt-[-0.5em] md:w-4/12">
                                 <div class="relative w-full mb-3">
@@ -684,7 +740,7 @@
                                     <select id="input-credito-entidad" class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg 
                                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
                                     dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    onchange="selectEntidad(this)">
+                                    onchange="selectEntidadCredito(this)">
                                         <option selected disabled hidden>Elige una opción</option>
                                     </select>
                                 </div>
@@ -721,10 +777,10 @@
                                     <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">
                                         Entidad federativa a ejercer
                                     </label>
-                                    <select id="input-entidad-vivienda" class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg 
+                                    <select id="input-entidad-vivienda" disabled class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg 
                                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
                                     dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    onchange="selectEntidad(this)">
+                                   >
                                         <option selected disabled hidden>Elige una opción</option>
                                     </select>
                                 </div>
@@ -744,7 +800,8 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Terreno mts<sup>2</sup></label>
                                     <input type="text" id="input-vivienda-terreno" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
-                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 " placeholder="...">
+                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 "
+                                    onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="...">
                                 </div>
                             </div>
 
@@ -753,7 +810,8 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Habitable mts<sup>2</sup></label>
                                     <input type="text" id="input-vivienda-habitable" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
-                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 " placeholder="...">
+                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                    onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="...">
                                 </div>
                             </div>
 
@@ -763,7 +821,8 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-sm font-bold mb-2" htmlfor="grid-password">Pisos</label>
                                     <input type="text" id="input-vivienda-pisos" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded 
-                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 " placeholder="...">
+                                    text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                    onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="..." oninput="limitarValores(this,4)">
                                 </div>
                             </div>
 
@@ -818,48 +877,46 @@
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-6/12 lg:w-6/12 md:w-8/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-2/12 sm:w-4/12" for="user_avatar">Identificación oficial</label>
-                                    <input id="input-credencial-pdf" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
+                                    <input id="input-credencial-pdf" name="identificacion_oficial" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
                             <!--    contenedor del curp  -->
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-6/12 lg:w-6/12 md:w-6/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-2/12 mt-1 sm:w-4/12" for="user_avatar">CURP formato PDF</label>
-                                    <input id="input-curp-pdf" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
+                                    <input id="input-curp-pdf" name="curp_documento" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
                             <!--    contenedor de talon de pago  -->
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-8/12 lg:w-8/12 md:w-8/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-2/12 mt-1 sm:w-4/12" for="user_avatar">Ultimo talón de pago</label>
-                                    <input id="input-pago-pdf" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
+                                    <input id="input-pago-pdf" name="talon_pago" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
                             <!--    contenedor de comprobante de domicilio  -->
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-8/12 lg:w-8/12 md:w-9/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-4/12 mt-1 sm:w-5/12" for="user_avatar">Comprobante de domicilio</label>
-                                    <input id="input-comprobante-pdf" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
+                                    <input id="input-comprobante-pdf" name="comprobante_domicilio" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
                             <!--    contenedor de rfc  -->
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-8/12 lg:w-8/12 md:w-9/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-4/12 mt-1 sm:w-5/12" for="user_avatar">RFC formato PDF</label>
-                                    <input id="input-rfc-pdf" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
+                                    <input id="input-rfc-pdf" name="rfc_documento" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
                             <!--    contenedor de acta de nacimiento  -->
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-8/12 lg:w-8/12 md:w-9/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-4/12 mt-1 sm:w-5/12" for="user_avatar">Acta de nacimiento</label>
-                                    <input id="input-acta-pdf" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
+                                    <input id="input-acta-pdf" name="acta_nacimiento" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
-
-
                         </div>
-                        <hr class="mt-6 border-b-1 border-gray-600 hidden" id="lineC3">
+                        <hr class="mt-6 border-b-1 border-gray-600">
 
                         <!-- ===== BOTONES DE ENVIO Y ACEPTACIÓN ===== -->
                         <div class="flex flex-wrap h-4">
@@ -873,16 +930,18 @@
 
                             <div class="w-full lg:w-6/12 px-4 md:-mt-10 md:ml-28 lg:mt-4 lg:ml-3 sm:-mt-10 sm:ml-24">
                                 <label class="relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" id="input-restriccion" value="" class="sr-only peer">
+                                    <input type="checkbox" id="input-restriccion" value="" class="sr-only peer" onchange="checado(this)">
                                     <div class="w-11 h-6 bg-red-600 rounded-full peer-focus:ring-4 peer-focus:ring-blue-300
                                     dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full 
                                     peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px]
                                     after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 
-                                    after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                    after:transition-all dark:border-gray-600 peer-checked:bg-blue-600" id="btn-check" onchange="checado(this)"></div>
                                     <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Se aceptan términos y condiciones</span>
                                 </label>
-                            </div>                            
+                            </div>
+                                                    
                         </div>
+
                     </form>
                 </div>
             </div>
@@ -890,6 +949,11 @@
     </section>
 <?php
     include_once("../connection/cnx.php");
+    #Conexion::conexionDB();
+    #Conexion::insertarPrueba('Ismael','ismael123456789098','2000-12-12'); Aquí si ingresa datos
+   
+    #Conexion::conexionDBA();
+    #Conexion::insertPersona();
 ?>
     <script src="../js/backForms.js"></script>
 </body>

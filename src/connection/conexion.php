@@ -1,13 +1,15 @@
 <?php
 
-$serverName = "LAPTOP-193LCMSG";
-$connectionOptions = array ("Database" => "pruebaDigezsa","UID" => "DiegoMirand","PWD" => "Diego2812++");
+require 'pruebaCnx.php';
 
-$conn = sqlsrv_connect($serverName,$connectionOptions);
+$conexion = new Conexion('LAPTOP-193LCMSG', 'DiegoMirand', 'Diego2812++', 'pruebaDigezsa');
 
-if ($conn === false) {
-    die(print_r(sqlsrv_errors(), true));
+$conexion->conectar();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nombre = $_POST['input-nombre'];
+    $curp = $_POST['input-curp'];
+    $conexion->insertarDatos($nombre, $curp);
 }
-
 
 ?>
