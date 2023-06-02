@@ -18,7 +18,7 @@ class ConexionSQLServer {
         try {
             $this->connection = new PDO($dsn, $this->username, $this->password);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            #echo "Conexión exitosa a SQL Server";
+            echo "Conexión exitosa a SQL Server";
         } catch (PDOException $e) {
             echo "Error al conectar a SQL Server: " . $e->getMessage();
         }
@@ -243,52 +243,6 @@ class ConexionSQLServer {
         }
     }
 
-    /*public function insertDocumentos($rfc, $identificacion_oficial, $comprobante_domicilio, 
-    $rfc_documento, $curp, $acta_nacimiento, $talon_pago) {
-        try {
-            $sql = "INSERT INTO documentos (rfc, ineName, identificacion_oficial, comprobanteName, comprobante_domicilio, rfcName, rfc_documento,curpName, curp, actaName, acta_nacimiento, 
-            talonName, talon_pago) VALUES (:rfcDH, :ineName, CONVERT(varbinary(max), :inePdf), :comprobanteName, CONVERT(varbinary(max), :comprobantePdf), :rfcName, CONVERT(varbinary(max), 
-            :rfcPDf),
-            :curpName, CONVERT(varbinary(max), :curpPdf), :actaName, CONVERT(varbinary(max), :actaPdf), :talonName, CONVERT(varbinary(max), :talonPdf))";
-            $stmt = $this->connection->prepare($sql);
-    
-            // Generar nombres de archivo únicos
-            $ineName = $this->generateUniqueFilename($rfc, "ine.pdf");
-            $comprobanteName = $this->generateUniqueFilename($rfc, "domicilio.pdf");
-            $rfcName = $this->generateUniqueFilename($rfc, "rfc.pdf");
-            $curpName = $this->generateUniqueFilename($rfc, "curp.pdf");
-            $actaName = $this->generateUniqueFilename($rfc, "actaNacimiento.pdf");
-            $talonName = $this->generateUniqueFilename($rfc, "talonPago.pdf");
-
-            $stmt->bindParam(':rfcDH', $rfc, PDO::PARAM_STR);
-
-            $stmt->bindParam(':ineName', $ineName, PDO::PARAM_STR);
-            $stmt->bindParam(':inePdf', $identificacion_oficial, PDO::PARAM_LOB);
-            
-            $stmt->bindParam(':comprobanteName', $comprobanteName, PDO::PARAM_STR);
-            $stmt->bindParam(':comprobantePdf', $comprobante_domicilio, PDO::PARAM_LOB);
-            
-            $stmt->bindParam(':rfcName', $rfcName, PDO::PARAM_STR);
-            $stmt->bindParam(':rfcPDf', $rfc_documento, PDO::PARAM_LOB);
-            
-            $stmt->bindParam(':curpName', $curpName, PDO::PARAM_STR);
-            $stmt->bindParam(':curpPdf', $curp, PDO::PARAM_LOB);
-            
-            $stmt->bindParam(':actaName', $actaName, PDO::PARAM_STR);
-            $stmt->bindParam(':actaPdf', $acta_nacimiento, PDO::PARAM_LOB);
-            
-            $stmt->bindParam(':talonName', $talonName, PDO::PARAM_STR);
-            $stmt->bindParam(':talonPdf', $talon_pago, PDO::PARAM_LOB);
-            
-            $stmt->execute();
-            echo "Datos insertados correctamente documentos";
-        }catch(PDOException $er){               
-            echo "Error al insertar datos en documentos: " . $er->getMessage();
-        }
-    }*/
-
-    //SALTO
-    
    /* ==========   FUNCIONES INSERTAR DATOS DEL CONYUGE  ========== */
     public function insertConyuge($rfcDH,$nombre,$apellido_paterno,$apellido_materno,$fecha_nacimiento,$lugar_nacimiento,$curp,$rfc,$nss,
     $email,$genero,$infonavit){
@@ -336,13 +290,12 @@ class ConexionSQLServer {
         $derechohabienteRfc = $this->getDerechohabienteRfcFromConyuge($curp);
         echo "RFC $derechohabienteRfc";
     }
-
-    
+ 
     public function insertLaboralesConyuge($rfcConyuge,$entidadFederativa,$dependencia,
     $orgSindical,$sueldo,$nombramiento,$bimestres){
         try{
+           
             $this->connection->beginTransaction();
-
             if (empty($rfcConyuge) || empty($entidadFederativa) || empty($dependencia) || empty($sueldo) || empty($nombramiento) || empty($bimestres)){
                 echo "== Error: Todos los campos deben ser completados en caracteristicas ==.";
                 return false;
@@ -372,142 +325,7 @@ class ConexionSQLServer {
         } 
     }
 
-
-
-
-
-    
-    /*ublic function insertDocumentosConyuge($rfcConyuge,$ineConyuge,$domicilioConyuge,
-    $rfcPdf,$curpPdf,$actaConyuge,$talonConyuge){
-        try {
-            $sql = "INSERT INTO documentosConyuge (rfc, ineName, identificacion_oficial, comprobanteName, comprobante_domicilio, rfcName, rfc_documento,curpName, curp, actaName, acta_nacimiento, 
-            talonName, talon_pago) VALUES 
-            (:rfcConyuge, :ineName, CONVERT(varbinary(max), :inePdf), :comprobanteName, CONVERT(varbinary(max), :comprobantePdf), :rfcName, CONVERT(varbinary(max), :rfcPDf),
-            :curpName, CONVERT(varbinary(max), :curpPdf), :actaName, CONVERT(varbinary(max), :actaPdf), :talonName, CONVERT(varbinary(max), :talonPdf))";
-
-            $stmt = $this->connection->prepare($sql);
-    
-            $ineName = $this->generateUniqueFilename($rfcConyuge, "ine.pdf");
-            $comprobanteName = $this->generateUniqueFilename($rfcConyuge, "domicilio.pdf");
-            $rfcName = $this->generateUniqueFilename($rfcConyuge, "rfc.pdf");
-            $curpName = $this->generateUniqueFilename($rfcConyuge, "curp.pdf");
-            $actaName = $this->generateUniqueFilename($rfcConyuge, "actaNacimiento.pdf");
-            $talonName = $this->generateUniqueFilename($rfcConyuge, "talonPago.pdf");
-
-            $stmt->bindParam(':rfcConyuge', $rfcConyuge, PDO::PARAM_STR);
-
-            $stmt->bindParam(':ineName', $ineName, PDO::PARAM_STR);
-            $stmt->bindParam(':contenido', utf8_encode($ineConyuge), PDO::PARAM_STR);
-
-            $stmt->bindParam(':comprobanteName', $comprobanteName, PDO::PARAM_STR);
-            $stmt->bindParam(':contenido', utf8_encode($domicilioConyuge), PDO::PARAM_STR);
-
-            $stmt->bindParam(':rfcName', $rfcName, PDO::PARAM_STR);
-            $stmt->bindParam(':contenido', utf8_encode($rfcPdf), PDO::PARAM_STR);
-
-            $stmt->bindParam(':curpName', $curpName, PDO::PARAM_STR);
-            $stmt->bindParam(':contenido', utf8_encode($curpPdf), PDO::PARAM_STR);
-
-            $stmt->bindParam(':actaName', $actaName, PDO::PARAM_STR);
-            $stmt->bindParam(':contenido', utf8_encode($actaConyuge), PDO::PARAM_STR);
-            
-            $stmt->bindParam(':talonName', $talonName, PDO::PARAM_STR);
-            $stmt->bindParam(':contenido', utf8_encode($talonConyuge), PDO::PARAM_STR);
-            
-            $stmt->execute();
-            $this->connection->commit();
-            echo "Datos insertados correctamente documentos";
-        }catch(PDOException $er){            
-            $this->connection->rollBack();      
-            echo "Error al insertar datos: " . $er->getMessage();
-        }
-    }*/
-
-    public function procesarArchivos($rfcDH) {
-        //if (isset($_POST['enviarBtn'])) {
-            // Validar si los archivos fueron seleccionados
-            if (isset($_FILES['INE']) && isset($_FILES['CURP']) && isset($_FILES['TALONPAGO']) && isset($_FILES['DOMICILIO']) && isset($_FILES['RFC']) && isset($_FILES['ACTANACIMIENTO'])) {
-                $uploadOk = 1;
-    
-                // Array con los nombres de los inputs de archivos
-                $fileInputs = ["INE", "CURP", "TALONPAGO", "DOMICILIO", "RFC", "ACTANACIMIENTO"];
-    
-                // Directorio de destino para los archivos
-                $targetDir = "../PDF/";
-    
-                // Recorrer cada input de archivo
-                foreach ($fileInputs as $inputName) {
-                    if (isset($_FILES[$inputName])) {
-                        $file = $_FILES[$inputName];
-                        $targetFile = $targetDir . $this->generateUniqueFileName($file, $inputName, $rfcDH);
-                        $targetName = $this->generateUniqueFileName($file, $inputName, $rfcDH);
-                        $imageFileType = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
-    
-                        // Verificar si el archivo es un PDF
-                        if ($imageFileType != "pdf") {
-                            echo "Formato de archivo no válido. Solo se permiten archivos PDF.";
-                            $uploadOk = 0;
-                        }
-    
-                        // Verificar si hubo algún error en la subida del archivo
-                        if ($file["error"] !== UPLOAD_ERR_OK) {
-                            echo "Error al cargar el archivo.";
-                            $uploadOk = 0;
-                        } else {
-                            if (move_uploaded_file($file["tmp_name"], $targetFile)) {
-                                #$this->pruebaB($rfcDH, $targetName, $targetFile);
-                                echo "El archivo PDF '" . basename($file["name"]) . "' se ha subido correctamente.";
-                            } else {
-                                echo "Error al cargar el archivo.";
-                                $uploadOk = 0;
-                            }
-                        }
-                    }
-                }
-    
-                if ($uploadOk == 0) {
-                    echo "Error al cargar uno o más archivos.";
-                }
-            }
-    }
-
-    public function subirArchivos($rfcDH, $rutaDocumentos) {
-        // Directorio de destino para los archivos
-        $targetDir = "../PDF/";
-    
-        // Recorrer cada ruta de documento
-        foreach ($rutaDocumentos as $index => $rutaDocumento) {
-            $file = $_FILES[$index];
-            $targetFile = $targetDir . $rfcDH . '_' . basename($file["name"]);
-            $imageFileType = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
-    
-            // Verificar si el archivo es un PDF
-            if ($imageFileType != "pdf") {
-                echo "Formato de archivo no válido. Solo se permiten archivos PDF.";
-                return;
-            }
-    
-            // Mover el archivo al directorio de destino
-            if (move_uploaded_file($file["tmp_name"], $targetFile)) {
-                echo "El archivo PDF '" . basename($file["name"]) . "' se ha subido correctamente.";
-            } else {
-                echo "Error al cargar el archivo.";
-            }
-        }
-    }
-
-    public function pruebaB($rfc,$nombre,$ruta){
-        try {
-            $sql = "INSERT INTO pruebaB (rfc,nombre,ruta) VALUES (:rfc,:nombre,:ruta)";
-            $stmt = $this->connection->prepare($sql);
-            $stmt->bindParam(':rfc', $rfc);
-            $stmt->bindParam(':nombre', $nombre);
-            $stmt->bindParam(':ruta', $ruta);
-            $stmt->execute();
-        } catch (PDOException $e) {
-            echo "Error al insertar datos: " . $e->getMessage();
-        }
-    }
+    /* ==========   FUNCIONES PARA GENERAR RUTA, NOMBRE DE ARCHIVOS E INSERTAR  ========== */
     public function generateUniqueFileName($file, $inputName, $rfc) {
         $fileName = $file["name"];
         $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
@@ -515,10 +333,69 @@ class ConexionSQLServer {
         return $uniqueName;
     }
 
-    
-    
+    public function moverArchivosPDF($rfcDH,$ine_archivo,$curp_archivo,$talon_archivo,$domicilio_archivo,$rfc_archivo,$acta_archivo){
+        $uploadDirectory = '../PDF/';
+        try{   
+                    if (!empty($_FILES)) {
+                        $targetFileIne = $uploadDirectory . $this->generateUniqueFileName($ine_archivo,"INE", $rfcDH);
+                        $targetFileCurp = $uploadDirectory . $this->generateUniqueFileName($curp_archivo,"CURP", $rfcDH);
+                        $targetFileTalon = $uploadDirectory . $this->generateUniqueFileName($talon_archivo,"TALONPAGO", $rfcDH);
+                        $targetFileDomicilio = $uploadDirectory . $this->generateUniqueFileName($domicilio_archivo,"DOMICILIO", $rfcDH);
+                        $targetFileRfc = $uploadDirectory . $this->generateUniqueFileName($rfc_archivo,"RFC", $rfcDH);
+                        $targetFileActa = $uploadDirectory . $this->generateUniqueFileName($acta_archivo,"ACTA", $rfcDH);
 
-    
+                        move_uploaded_file($ine_archivo['tmp_name'], $targetFileIne);
+                        move_uploaded_file($curp_archivo['tmp_name'], $targetFileCurp);
+                        move_uploaded_file($talon_archivo['tmp_name'], $targetFileTalon);
+                        move_uploaded_file($domicilio_archivo['tmp_name'], $targetFileDomicilio );
+                        move_uploaded_file($rfc_archivo['tmp_name'], $targetFileRfc);
+                        move_uploaded_file($acta_archivo['tmp_name'], $targetFileActa);   
+
+                        $nombreIne = $this->generateUniqueFileName($ine_archivo,"INE", $rfcDH);
+                        $nombreCurp =  $this->generateUniqueFileName($curp_archivo,"CURP", $rfcDH);
+                        $nombreTalon = $this->generateUniqueFileName($talon_archivo,"TALONPAGO", $rfcDH);
+                        $nombreDomicilio = $this->generateUniqueFileName($domicilio_archivo,"DOMICILIO", $rfcDH);
+                        $nombreRfc = $this->generateUniqueFileName($rfc_archivo,"RFC", $rfcDH);
+                        $nombreActa = $this->generateUniqueFileName($acta_archivo,"ACTA", $rfcDH);
+                        
+                        $this->ingresarPDF($rfcDH,$nombreIne,$targetFileIne);
+                        $this->ingresarPDF($rfcDH,$nombreCurp,$targetFileCurp);
+                        $this->ingresarPDF($rfcDH,$nombreTalon,$targetFileTalon);
+                        $this->ingresarPDF($rfcDH,$nombreDomicilio,$targetFileDomicilio);
+                        $this->ingresarPDF($rfcDH,$nombreRfc,$targetFileRfc);
+                        $this->ingresarPDF($rfcDH,$nombreActa,$targetFileActa);
+
+                        return true;
+                    }else{
+                        return false;
+                    }
+
+        }catch(PDOException $er){
+            echo "Error al insertar datos: " . $er->getMessage();
+            return false;
+        }
+    }
+
+    public function ingresarPDF($rfcDH,$name,$ruta){
+        try{
+            $this->connection->beginTransaction();
+            $sql = "INSERT INTO pruebaB (rfc, nombre, ruta) VALUES (:rfc, :nombre, :ruta)";
+            $stmt = $this->connection->prepare($sql);
+
+            $stmt->bindParam(':rfc', $rfcDH);
+            $stmt->bindParam(':nombre', $name);
+            $stmt->bindParam(':ruta', $ruta);
+
+            $stmt->execute();
+            $this->connection->commit();
+            return true;
+        }catch(PDOException $er){
+            $this->connection->rollBack();
+            echo "Error al insertar datos: " . $er->getMessage();
+            return false;
+        }
+    }
+
 }
 
 

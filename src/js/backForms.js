@@ -146,6 +146,243 @@ let conyugeHTML = ['label-conyuge','contenedor-conyuge-personal','linea-conyuge'
 'contenedor-laborales-conyuge','label-conyuge2','linea-conyuge2']; //Etiquetas de elementos del HTML que sirven para modificar su estilo de acuerdo a un evento
 
 /* ========== Funciones que extraen el valor  ========== MIMJ090117HTSRRLA5*/
+
+
+/* ========== Envio mediante el forms HTML ========== */
+let forms = document.getElementById('form_digezsa'); //variable que obtiene el id de la etiqueta forms
+//forms.addEventListener('submit', async (event) => { //Función del metodo Event de tipo submit, la cual es un método async (asíncrono)
+$('#form_digezsa').submit(function(e){
+    e.preventDefault(); //Llamado a un método que previene el recargar la página automaticamente
+    enviar(); //Invocación de la función enviar
+    document.getElementById("btn-check").style.backgroundColor="red";
+})
+//})
+
+/*document.addEventListener('DOMContentLoaded', function() {
+  var btnSubmit = document.getElementById('btn-enviar-sb');
+  btnSubmit.addEventListener('click', enviar);
+});*/
+
+var formDataDerechoHabiente = new FormData();
+function enviar(e){
+    //e.preventDefault();
+    getDatos(); //Función donde se encuentran todos los datos obtenidos
+    if(btn_pre_envio.checked && verificarDatos()){ //COndición para que debe ser true para que se envien los datos
+        console.log("Formulario enviado");
+        var datos_personales = new DatosPersonales(nombre,apellidoPaterno,apellidoMaterno,curp,rfc,numeroSeguro,estadoCivil(),genero(),correo,lineaCredito(),fechaNacimiento,lugarNacimiento);  
+        var datos_laborales = new DatosLaborales(dependencia,organizacion(),sueldoBase,nombramiento(),bimestres,entidadFederativaLaboral());
+        var datos_domicilio = new DatosDomicilio(calle,colonia,numInterior,numExterior,codigoPostal,municipio,entidadFederativa(),numeroIntegrantes,telefonoParticular,celular);
+        var datos_credito = new DatosCreditoSolicitado(tipoCredito(),modalidadCredito(),entidadCredito());
+        var datos_vivienda = new DatosVivienda(adquisicionVivienda(),entidadVivienda(),caracteristicasVivienda,municipioVivienda,terrenoMts,habitableMts,pisos,cochera(),alberca());
+        var datos_pdf = new DatosDocumentos(credencial,curpPdf,talonPago,domicilio,rfcDocumento,actaDocumento);
+
+        var datos_conyuge = new DatosPersonalesConyuge(nombreConyuge,paternoConyuge,maternoConyuge,curpConyuge,uaxRFC,nssConyuge,generoConyuge(),infonavit(),emailConyuge,fecha_nacimientoConyuge,lugar_nacimientoConyuge);
+        var datos_laborales_conyuge = new DatosLaboralesConyuge(dependenciaConyuge,organizacionConyuge(),sueldoConyuge,nombramientoConyuge(),bimestresConyuge,entidadConyuge());
+        var datos_pdf_conyuge = new DatosDocumentosConyuge(credencialConyuge,curpConyugePdf,talonPagoConyuge,domicilioConyuge,rfcConyugePdf,actaNacimientoConyuge);
+
+        console.log(credencialConyuge);
+        console.log(rfcConyugePdf);
+        console.log(rfcConyuge);
+
+        var objetoPersonaInformacion = new ObjetoDerechoHabiente(datos_personales,datos_laborales,datos_domicilio,datos_vivienda,datos_pdf,datos_conyuge,
+            datos_laborales_conyuge,datos_pdf_conyuge,datos_credito);
+
+            derechoHabientes.push(objetoPersonaInformacion); //Introducción el objeto al arreglo
+            comprobacionCorrecta = true;      
+
+            const formData = new FormData();
+            
+            formData.append("comprobacion",comprobacionCorrecta)
+            formData.append("nombre",datos_personales.nombre);
+            formData.append("apellido_paterno",datos_personales.apellidoPaterno);
+            formData.append("apellido_materno",datos_personales.apellidoMaterno);
+            formData.append("curp",datos_personales.curp);
+            formData.append("rfc",datos_personales.rfc);
+            formData.append("nss",datos_personales.nss);
+            formData.append("estado_civil",datos_personales.estadoCivil);
+            formData.append("genero",datos_personales.genero);
+            formData.append("correo",datos_personales.correo);
+            formData.append("linea_credito",datos_personales.lineaCredito);
+            formData.append("fecha_nacimiento",datos_personales.fechaNacimiento);
+            formData.append("lugar_nacimiento",datos_personales.lugarNacimiento);
+            formData.append("fecha_actualizacion",datos_personales.fechaActualizada);
+
+            formData.append("dependencia",datos_laborales.dependencia);
+            formData.append("organizacion",datos_laborales.organizacion);
+            formData.append("sueldoBase",datos_laborales.sueldoBase);
+            formData.append("nombramiento",datos_laborales.nombramiento);
+            formData.append("bimestres",datos_laborales.numeroBimestres);
+            formData.append("entFederativa_LB",datos_laborales.entidadFederativa);
+
+            formData.append("calle",datos_domicilio.calle);
+            formData.append("colonia",datos_domicilio.colonia);
+            formData.append("num_interior",datos_domicilio.numeroInterior);
+            formData.append("num_exterior",datos_domicilio.numeroExterior);
+            formData.append("codigo_postal",datos_domicilio.codigoPostal);
+            formData.append("municipio",datos_domicilio.municipio);
+            formData.append("entFederativa_DOM",datos_domicilio.entidadFederativa);
+            formData.append("numero_integrantes",datos_domicilio.numeroIntegrantes);
+            formData.append("telefono_particular",datos_domicilio.telefonoParticular);
+            formData.append("celular",datos_domicilio.celular);
+
+            formData.append("tipo_credito",datos_credito.tipoCredito);
+            formData.append("modalidad_credito",datos_credito.modalidadCredito);
+            formData.append("entidad_credito",datos_credito.entidadFederativaCredito);
+
+            formData.append("adquisicion_vivienda",datos_vivienda.adquisicionVivienda);
+            formData.append("entidad_vivienda",datos_vivienda.entidadFederativa);
+            formData.append("caracteristicas",datos_vivienda.caracteristicas);
+            formData.append("municipio_vivienda",datos_vivienda.municipio);
+            formData.append("terrenoMts",datos_vivienda.terrenoMts);
+            formData.append("habitableMts",datos_vivienda.habitanMts);
+            formData.append("pisos",datos_vivienda.pisos);
+            formData.append("cochera",datos_vivienda.cochera);
+            formData.append("alberca",datos_vivienda.alberca);
+
+            formData.append("ine_file",datos_pdf.credencialDocumento);
+            formData.append("curp_file",datos_pdf.curpDocumento);
+            formData.append("talonPago_file",datos_pdf.talonPagoDocumento);
+            formData.append("domicilio_file",datos_pdf.docimicilioDocumento);
+            formData.append("rfc_file",datos_pdf.rfcDocumento);
+            formData.append("actaNacimiento_file",datos_pdf.actaNacimiento);
+
+            formData.append("nombre_conyuge",datos_conyuge.nombre_conyuge);
+            formData.append("paterno_conyuge",datos_conyuge.apellidoPaterno_conyuge);
+            formData.append("materno_conyuge",datos_conyuge.apellidoMaterno_conyuge);
+            formData.append("curp_conyuge",datos_conyuge.curp_conyuge);
+            formData.append("rfc_conyuge",uaxRFC);
+            formData.append("nss_conyuge",datos_conyuge.nss_conyuge);
+            formData.append("genero_conyuge",datos_conyuge.genero_conyuge);
+            formData.append("infonavit",datos_conyuge.infonavit);
+            formData.append("correo_conyuge",datos_conyuge.email);
+            formData.append("fechaNac_conyuge",datos_conyuge.fecha_nacimiento);
+            formData.append("lugarNac_conyuge",datos_conyuge.lugar_nacimiento);
+
+            formData.append("dependencia_conyuge",datos_laborales_conyuge.dependencia_conyuge);
+            formData.append("organizacion_conyuge",datos_laborales_conyuge.organizacion_conyuge);
+            formData.append("sueldo_conyuge",datos_laborales_conyuge.sueldo_conyuge);
+            formData.append("nombramiento_conyuge",datos_laborales_conyuge.nombramiento_conyuge);
+            formData.append("bimestres_conyuge",datos_laborales_conyuge.bimestres_conyuge);
+            formData.append("entidad_conyuge",datos_laborales_conyuge.entidadLaboral);
+
+            formData.append("ine_file_conyuge",datos_pdf_conyuge.conyugeCredencial);
+            formData.append("curp_file_conyuge",datos_pdf_conyuge.conyugeCurp);
+            formData.append("talonPago_file_conyuge",datos_pdf_conyuge.conyugeTalonPago);
+            formData.append("domicilio_file_conyuge",datos_pdf_conyuge.conyugeDomicilio);
+            formData.append("rfc_file_conyuge",datos_pdf_conyuge.conyugeRfc);
+            formData.append("actaNacimiento_file_conyuge",datos_pdf_conyuge.conyugeActa);
+
+            const xhr = new XMLHttpRequest();
+                    xhr.open('POST', '../connection/inte.php'); // Ruta al script PHP que manejará la carga de archivos y datos de texto
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                        // Respuesta exitosa del servidor
+                        console.log(xhr.responseText);
+                        } else {
+                        // Error en la respuesta del servidor
+                        console.error('Error al subir los archivos y los datos de texto.');
+                        }
+                    };
+                    xhr.send(formData);
+                    
+
+
+           /* jQuery.ajax({
+                url: "../connection/pruebaDos.php", // Ruta al archivo PHP que verifica la conexión
+                method: "POST",
+                data: {
+                    comprobacion: comprobacionCorrecta,
+                    nombre: datos_personales.nombre,
+                    apellido_paterno: datos_personales.apellidoPaterno,
+                    apellido_materno: datos_personales.apellidoMaterno,
+                    linea_credito: datos_personales.lineaCredito,
+                    fecha_nacimiento: datos_personales.fechaNacimiento,
+                    lugar_nacimiento: datos_personales.lugarNacimiento,
+                    curp: datos_personales.curp, 
+                    estado_civil: datos_personales.estadoCivil,
+                    genero: datos_personales.genero,
+                    rfc: datos_personales.rfc,
+                    nss: datos_personales.nss,
+                    email: datos_personales.correo,
+                    //estatus: datos_personales.estatus,
+                    fecha_actualizacion: datos_personales.fechaActualizada,
+                    //expediente: datos_personales.expediente,
+
+                    entidad_federativa: datos_laborales.entidadFederativa,
+                    dependencia: datos_laborales.dependencia,
+                    organizacion_sindical: datos_laborales.organizacion,
+                    sueldo: datos_laborales.sueldoBase,
+                    nombramiento: datos_laborales.nombramiento,
+                    bimestres: datos_laborales.numeroBimestres,
+
+                    calle: datos_domicilio.calle,
+                    numero_interior: datos_domicilio.numeroInterior,
+                    numero_exterior: datos_domicilio.numeroExterior,
+                    colonia: datos_domicilio.colonia,
+                    cp: datos_domicilio.codigoPostal,
+                    municipio: datos_domicilio.municipio,
+                    entidad_federativaDOM: datos_domicilio.entidadFederativa,
+                    integrantes_familia: datos_domicilio.numeroIntegrantes,
+                    telefono_particular: datos_domicilio.telefonoParticular,
+                    telefono_celular: datos_domicilio.celular,
+
+                    tipo_credito: datos_credito.tipoCredito,
+                    modalidad: datos_credito.modalidadCredito,
+                    entidad_federativaCRD: datos_credito.entidadFederativaCredito,
+
+                    modalidadV: datos_vivienda.adquisicionVivienda,
+                    entidad_federativaV: datos_vivienda.entidadFederativa,
+                    municipioV: datos_vivienda.municipio,
+                    terreno_mts: datos_vivienda.terrenoMts,
+                    habitable_mts: datos_vivienda.habitanMts,
+                    pisos: datos_vivienda.pisos,
+                    cochera: datos_vivienda.cochera,
+                    alberca: datos_vivienda.alberca,
+                    especificaciones: datos_vivienda.caracteristicas,
+
+                    nombreCy: datos_conyuge.nombre_conyuge,
+                    apellido_paternoCy: datos_conyuge.apellidoPaterno_conyuge,
+                    apellido_maternoCy: datos_conyuge.apellidoMaterno_conyuge,
+                    fecha_nacimientoCy: datos_conyuge.fecha_nacimiento,
+                    lugar_nacimientoCy: datos_conyuge.lugar_nacimiento,
+                    curpCy: datos_conyuge.curp_conyuge,
+                    rfcCy: uaxRFC,
+                    nssCy: datos_conyuge.nss_conyuge,
+                    emailCy: datos_conyuge.email,
+                    generoCy: datos_conyuge.genero_conyuge, 
+                    infonavitCy: datos_conyuge.infonavit,
+
+                    entidad_federativaCY: datos_laborales_conyuge.entidadLaboral,
+                    dependenciaCY: datos_laborales_conyuge.dependencia_conyuge,
+                    organizacion_sindicalC: datos_laborales_conyuge.organizacion_conyuge,
+                    sueldoCY: datos_laborales_conyuge.sueldo_conyuge,
+                    nombramientoCY: datos_laborales_conyuge.nombramiento_conyuge,
+                    bimestresCY: datos_laborales_conyuge.bimestres_conyuge,
+                },
+                success: function(response){
+                    console.log("Servidor:",response);
+                },
+                error:function(xhr,status,error){
+                    console.log(xhr.responseText)
+                }
+            });*/
+
+            //limpiarDatosPersonales();
+
+            btn_pre_envio.checked = false;
+
+    }else{
+        console.log("ERROR CHECK")
+        btn_pre_envio.checked = false;
+        comprobacionCorrecta = false;
+        modalErr.style.display = "block";
+        document.getElementById("btn-check").style.backgroundColor="red";
+    }
+    
+   // document.getElementById("btn-check").style.backgroundColor="red";
+    console.log("object",derechoHabientes);
+}
+
 function getDatosPersonales(){
     nombre = document.getElementById('input-nombre').value.toUpperCase(); //Toda variable que tenga *.value* es para obtener los datos a la hora que se envíen
     apellidoPaterno = document.getElementById('input-apellidoPaterno').value.toUpperCase();
@@ -244,32 +481,13 @@ function getDatosVivienda(){
     }
 }
 
-var formDataDerechoHabiente = new FormData();
-var rutaDocumentos = [];
-
-function getDocumentos() {
-      var nombreCamposPorID = ["input-credencial-pdf","input-curp-pdf","input-pago-pdf","input-comprobante-pdf","input-rfc-pdf","input-acta-pdf"];
-
-      nombreCamposPorID.forEach((campoId) => {
-        var input = document.getElementById(campoId);
-
-        if(input.files.length > 0){
-            var archivoFile = input.files[0];
-            var targetName = archivoFile.name;
-            var posicion = targetName.lastIndexOf("\\");
-
-            if(posicion !== -1){
-                targetName = targetName.substring(posicion + 1);
-            }
-
-            var extension = targetName.split(".").pop().toLowerCase();
-            if (extension === "pdf") {
-                rutaDocumentos.push(targetName);
-            } else {
-                console.log("El archivo " + targetName + " no es un PDF válido");
-            }
-        }
-      });
+function getDocumentos(){
+    credencial = document.getElementById('input-credencial-pdf').files[0];
+    curpPdf = document.getElementById('input-curp-pdf').files[0];
+    talonPago = document.getElementById('input-pago-pdf').files[0];
+    domicilio = document.getElementById('input-comprobante-pdf').files[0];
+    rfcDocumento = document.getElementById('input-rfc-pdf').files[0];
+    actaDocumento = document.getElementById('input-acta-pdf').files[0];
 }
 
 function getDatosConyuge(){
@@ -315,12 +533,23 @@ function getLaboralesConyuge(){
 }
 
 function getDocumentosConyuge(){
-    credencialConyuge  = document.getElementById('credencial-conyuge').value;
-    curpConyugePdf = document.getElementById('curp-conyuge').value;
-    talonPagoConyuge = document.getElementById('talonPago-conyuge').value;
-    domicilioConyuge = document.getElementById('domicilio-conyuge').value;
-    rfcConyuge = document.getElementById("input-rfc-conyuge").value;
-    actaNacimientoConyuge = document.getElementById("input-acta-conyuge").value;
+     credencialConyuge  = document.getElementById('credencial-conyuge').files[0];
+     console.log(credencialConyuge);
+
+     curpConyugePdf = document.getElementById('curp-conyuge').files[0];
+     console.log(curpConyugePdf);
+
+     talonPagoConyuge = document.getElementById('talonPago-conyuge').files[0];
+     console.log(credencialConyuge);
+
+     domicilioConyuge = document.getElementById('domicilio-conyuge').files[0];
+     console.log(domicilioConyuge);
+
+     rfcConyugePdf = document.getElementById('input-rfc-conyuge-intento').files[0];
+     console.log(rfcConyugePdf);
+
+     actaNacimientoConyuge = document.getElementById('input-acta-conyuge').files[0];
+     console.log(actaNacimientoConyuge);
 }
 
 /*   Función que obtiene el valor de todos los campos    */
@@ -334,131 +563,6 @@ function getDatos(){
     getDatosConyuge();
     getLaboralesConyuge();
     getDocumentosConyuge();
-}
-
-/* ========== Envio mediante el forms HTML ========== */
-let forms = document.getElementById('form_digezsa'); //variable que obtiene el id de la etiqueta forms
-forms.addEventListener('submit', async (event) => { //Función del metodo Event de tipo submit, la cual es un método async (asíncrono)
-    event.preventDefault(); //Llamado a un método que previene el recargar la página automaticamente
-    enviar(); //Invocación de la función enviar
-    document.getElementById("btn-check").style.backgroundColor="red";
-})
-
-function enviar(){
-    getDatos(); //Función donde se encuentran todos los datos obtenidos
-    if(btn_pre_envio.checked && verificarDatos()){ //COndición para que debe ser true para que se envien los datos
-       // if(verificarDatos()){ //Funcion que al cumplir que los datos no esten incompletos o vacios
-        console.log("Formulario enviado");
-        var datos_personales = new DatosPersonales(nombre,apellidoPaterno,apellidoMaterno,curp,rfc,numeroSeguro,estadoCivil(),genero(),correo,lineaCredito(),fechaNacimiento,lugarNacimiento);  
-        var datos_laborales = new DatosLaborales(dependencia,organizacion(),sueldoBase,nombramiento(),bimestres,entidadFederativaLaboral());
-        var datos_domicilio = new DatosDomicilio(calle,colonia,numInterior,numExterior,codigoPostal,municipio,entidadFederativa(),numeroIntegrantes,telefonoParticular,celular);
-        var datos_credito = new DatosCreditoSolicitado(tipoCredito(),modalidadCredito(),entidadCredito());
-        var datos_vivienda = new DatosVivienda(adquisicionVivienda(),entidadVivienda(),caracteristicasVivienda,municipioVivienda,terrenoMts,habitableMts,pisos,cochera(),alberca());
-        var datos_pdf = new DatosDocumentos(credencial,curpPdf,talonPago,domicilio,rfcDocumento,actaDocumento);
-
-        var datos_conyuge = new DatosPersonalesConyuge(nombreConyuge,paternoConyuge,maternoConyuge,curpConyuge,uaxRFC,nssConyuge,generoConyuge(),infonavit(),emailConyuge,fecha_nacimientoConyuge,lugar_nacimientoConyuge);
-        var datos_laborales_conyuge = new DatosLaboralesConyuge(dependenciaConyuge,organizacionConyuge(),sueldoConyuge,nombramientoConyuge(),bimestresConyuge,entidadConyuge());
-        var datos_pdf_conyuge = new DatosDocumentosConyuge(credencialConyuge,curpConyugePdf,talonPagoConyuge,domicilioConyuge,rfcConyugePdf,actaNacimientoConyuge);
-
-        var objetoPersonaInformacion = new ObjetoDerechoHabiente(datos_personales,datos_laborales,datos_domicilio,datos_vivienda,datos_pdf,datos_conyuge,
-            datos_laborales_conyuge,datos_pdf_conyuge,datos_credito);
-
-            derechoHabientes.push(objetoPersonaInformacion); //Introducción el objeto al arreglo
-            comprobacionCorrecta = true;        
-
-            console.log("RUTAS",rutaDocumentos);
-            
-            jQuery.ajax({
-                url: "../connection/pruebaDos.php", // Ruta al archivo PHP que verifica la conexión
-                method: "POST",
-                data: {
-                    comprobacion: comprobacionCorrecta,
-                    nombre: datos_personales.nombre,
-                    apellido_paterno: datos_personales.apellidoPaterno,
-                    apellido_materno: datos_personales.apellidoMaterno,
-                    linea_credito: datos_personales.lineaCredito,
-                    fecha_nacimiento: datos_personales.fechaNacimiento,
-                    lugar_nacimiento: datos_personales.lugarNacimiento,
-                    curp: datos_personales.curp, 
-                    estado_civil: datos_personales.estadoCivil,
-                    genero: datos_personales.genero,
-                    rfc: datos_personales.rfc,
-                    nss: datos_personales.nss,
-                    email: datos_personales.correo,
-                    estatus: datos_personales.estatus,
-                    fecha_actualizacion: datos_personales.fechaActualizada,
-                    expediente: datos_personales.expediente,
-
-                    entidad_federativa: datos_laborales.entidadFederativa,
-                    dependencia: datos_laborales.dependencia,
-                    organizacion_sindical: datos_laborales.organizacion,
-                    sueldo: datos_laborales.sueldoBase,
-                    nombramiento: datos_laborales.nombramiento,
-                    bimestres: datos_laborales.numeroBimestres,
-
-                    calle: datos_domicilio.calle,
-                    numero_interior: datos_domicilio.numeroInterior,
-                    numero_exterior: datos_domicilio.numeroExterior,
-                    colonia: datos_domicilio.colonia,
-                    cp: datos_domicilio.codigoPostal,
-                    municipio: datos_domicilio.municipio,
-                    entidad_federativaDOM: datos_domicilio.entidadFederativa,
-                    integrantes_familia: datos_domicilio.numeroIntegrantes,
-                    telefono_particular: datos_domicilio.telefonoParticular,
-                    telefono_celular: datos_domicilio.celular,
-
-                    tipo_credito: datos_credito.tipoCredito,
-                    modalidad: datos_credito.modalidadCredito,
-                    entidad_federativaCRD: datos_credito.entidadFederativaCredito,
-
-                    modalidadV: datos_vivienda.adquisicionVivienda,
-                    entidad_federativaV: datos_vivienda.entidadFederativa,
-                    municipioV: datos_vivienda.municipio,
-                    terreno_mts: datos_vivienda.terrenoMts,
-                    habitable_mts: datos_vivienda.habitanMts,
-                    pisos: datos_vivienda.pisos,
-                    cochera: datos_vivienda.cochera,
-                    alberca: datos_vivienda.alberca,
-                    especificaciones: datos_vivienda.caracteristicas,
-
-                    nombreCy: datos_conyuge.nombre_conyuge,
-                    apellido_paternoCy: datos_conyuge.apellidoPaterno_conyuge,
-                    apellido_maternoCy: datos_conyuge.apellidoMaterno_conyuge,
-                    fecha_nacimientoCy: datos_conyuge.fecha_nacimiento,
-                    lugar_nacimientoCy: datos_conyuge.lugar_nacimiento,
-                    curpCy: datos_conyuge.curp_conyuge,
-                    rfcCy: uaxRFC,
-                    nssCy: datos_conyuge.nss_conyuge,
-                    emailCy: datos_conyuge.email,
-                    generoCy: datos_conyuge.genero_conyuge, 
-                    infonavitCy: datos_conyuge.infonavit,
-
-                    entidad_federativaCY: datos_laborales_conyuge.entidadLaboral,
-                    dependenciaCY: datos_laborales_conyuge.dependencia_conyuge,
-                    organizacion_sindicalC: datos_laborales_conyuge.organizacion_conyuge,
-                    sueldoCY: datos_laborales_conyuge.sueldo_conyuge,
-                    nombramientoCY: datos_laborales_conyuge.nombramiento_conyuge,
-                    bimestresCY: datos_laborales_conyuge.bimestres_conyuge,
-                },
-                success: function(response){
-                    console.log("Servidor:",response);
-                },
-                error:function(xhr,status,error){
-                    console.log(xhr.responseText)
-                }
-            });
-
-            //limpiarDatosPersonales();
-
-            btn_pre_envio.checked = false;
-
-    }else{
-        console.log("ERROR CHECK")
-        btn_pre_envio.checked = false;
-        comprobacionCorrecta = false;
-        modalErr.style.display = "block";
-    }
-    console.log("object",derechoHabientes);
 }
 
 function checado(verificacion){
@@ -650,11 +754,11 @@ function verificarDatos(){
             if(!validarEstado()) validar = false;
             if(!validarLineaCredito()) validar = false;
             if(!validarNacimiento(fechaNacimiento,lugarNacimiento)) validar = false;
-           /* if(!validarDatosLaborales(dependencia,sueldoBase,nombramiento,bimestres)) validar = false;
-            if(!validarDomicilio(calle,colonia,numExterior,codigoPostal,municipio,entidadFederativa(),numeroIntegrantes,celular)) validar = false;
-            if(!validarDatosCredito()) validar = false;
-            if(!validarDatosVivienda()) validar = false;*/
-          // if(!validarDocumentos(credencial,curpPdf,talonPago,domicilio,rfcDocumento,actaDocumento)) validar = false;     
+            //if(!validarDatosLaborales(dependencia,sueldoBase,nombramiento,bimestres)) validar = false;
+            //if(!validarDomicilio(calle,colonia,numExterior,codigoPostal,municipio,entidadFederativa(),numeroIntegrantes,celular)) validar = false;
+            //if(!validarDatosCredito()) validar = false;
+           // if(!validarDatosVivienda()) validar = false;
+            if(!validarDocumentos(credencial,curpPdf,talonPago,domicilio,rfcDocumento,actaDocumento)) validar = false;     
                 if(selectEstadoCivil() === "Casada(o)"){ //Verificacion para el ingreso de datos del conyuge 
 
                     if(!validarApellido(nombreConyuge,paternoConyuge,maternoConyuge)) validar = false; //cónyuge

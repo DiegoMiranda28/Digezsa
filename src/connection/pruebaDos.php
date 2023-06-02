@@ -1,5 +1,99 @@
 <?php
 include "prueba.php"; // Reemplaza con la ruta correcta al archivo de la clase de conexión
+
+//if (isset($_POST['submit'])) {
+
+    $nombreDH = isset($_POST['nombre']) ? $_POST['nombre'] : "";
+    $ap_paternoDH = isset($_POST['apellido_paterno']) ? $_POST['apellido_paterno'] : "";
+    $ap_maternoDH = isset($_POST['apellido_materno']) ? $_POST['apellido_materno'] : "";
+    $linea_credito = isset($_POST['linea_credito']) ? $_POST['linea_credito'] : "";
+    $fecha_nacimientoDH = isset($_POST['fecha_nacimiento']) ? $_POST['fecha_nacimiento'] : "";
+    $lugar_nacimientoDH = isset($_POST['lugar_nacimiento']) ? $_POST['lugar_nacimiento'] : "";
+    $curpDH = isset($_POST['curp']) ? $_POST['curp'] : "";
+    $estado_civil = isset($_POST['estado_civil']) ? $_POST['estado_civil'] : "";
+    $genero = isset($_POST['genero']) ? $_POST['genero'] : "";
+    $rfcDH = isset($_POST['rfc']) ? $_POST['rfc'] : ""; #***
+    $nssDH = isset($_POST['nss']) ? $_POST['nss'] : "";
+    $emailDH = isset($_POST['email']) ? $_POST['email'] : "";
+    $fecha_actualizacion = isset($_POST['fecha_actualizacion']) ? $_POST['fecha_actualizacion'] : "";
+    $comprobacion = isset($_POST['comprobacion']) ? $_POST['comprobacion'] : "";
+
+    $conexion = new ConexionSQLServer('LAPTOP-193LCMSG','ejemplo','DiegoMirand','Diego2812++');
+    $conexion->conectar();
+
+    if($comprobacion){
+
+        $success = true;
+   
+      $conexion->insertDerechoHabiente($nombreDH, $ap_paternoDH, $ap_maternoDH, $linea_credito, $fecha_nacimientoDH, $lugar_nacimientoDH, $curpDH, $estado_civil, $genero, $rfcDH, $nssDH, $emailDH,'PROTEGIDO', $fecha_actualizacion,'');
+
+      
+if (isset($_FILES['INE']) && isset($_FILES['CURP']) && isset($_FILES['TALONPAGO']) && isset($_FILES['DOMICILIO']) && isset($_FILES['RFC']) && isset($_FILES['ACTANACIMIENTO'])) {
+    $uploadOk = 1;
+// Array con los nombres de los inputs de archivos
+$fileInputs = ["INE", "CURP", "TALONPAGO", "DOMICILIO", "RFC", "ACTANACIMIENTO"];
+
+// Directorio de destino para los archivos
+$targetDir = "../PDF/";
+
+// Recorrer cada input de archivo
+foreach ($fileInputs as $inputName) {
+if (isset($_FILES[$inputName])) {
+$file = $_FILES[$inputName];
+$targetFile = $targetDir . generateUniqueFileName($file, $inputName, $rfcDH);
+$targetName = generateUniqueFileName($file, $inputName, $rfcDH);
+$imageFileType = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
+
+// Verificar si el archivo es un PDF
+if ($imageFileType != "pdf") {
+    echo "Formato de archivo no válido. Solo se permiten archivos PDF.";
+    $uploadOk = 0;
+}
+
+// Verificar si hubo algún error en la subida del archivo
+if ($file["error"] !== UPLOAD_ERR_OK) {
+    echo "Error al cargar el archivo.";
+    $uploadOk = 0;
+} else {
+    if (move_uploaded_file($file["tmp_name"], $targetFile)) {
+        #$this->pruebaB($rfcDH, $targetName, $targetFile);
+    } else {
+        echo "Error al cargar el archivo.";
+        $uploadOk = 0;
+    }
+}
+}
+}
+
+if ($uploadOk == 0) {
+echo "Error al cargar uno o más archivos.";
+
+}
+}
+
+     
+            
+
+        echo $success ? "Inserción correcta" : "Error en la inserción de algún método";
+
+    }else{
+        echo "False";
+    }
+
+   // }
+        
+        function generateUniqueFileName($file, $inputName, $rfc) {
+            $fileName = $file["name"];
+            $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+            $uniqueName = $rfc . $inputName . "." . $fileExtension;
+            return $uniqueName;
+        }
+
+
+
+
+
+/*include "prueba.php"; // Reemplaza con la ruta correcta al archivo de la clase de conexión
 #$conexion = new ConexionSQLServer('LAPTOP-193LCMSG','pruebaDigezsa','DiegoMirand','Diego2812++');
 #$conexion = new ConexionSQLServer('abacapital.mssql.somee.com','abacapital','jaredrosas_SQLLogin_1','e4d7nl9d6d');
 
@@ -90,6 +184,7 @@ if ($comprobacion) {
 
     $conexion->insertDerechoHabiente($nombreDH, $ap_paternoDH, $ap_maternoDH, $linea_credito, $fecha_nacimientoDH, $lugar_nacimientoDH, $curpDH, $estado_civil, $genero, $rfcDH, $nssDH, $emailDH, $estatus, $fecha_actualizacion, $expendiente);
 
+    
     // Verificar si hubo algún error en la inserción de datos laborales
     /*if(!$conexion->insertDHLaborales($rfcDH, $entidad_federativaLB, $dependencia, $organizacion_sindical, $sueldo, $nombramiento, $bimestres)) {
          $success = false;
@@ -141,7 +236,7 @@ if ($comprobacion) {
                     #   $success = false;
                 # }
             }
-    }*/
+    }
     
 
 
@@ -149,7 +244,7 @@ if ($comprobacion) {
 
 }else{
     echo "False";
-}
+}*/
 
 
 ?>
