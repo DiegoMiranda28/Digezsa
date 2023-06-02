@@ -18,16 +18,35 @@
                       
               <a href="index.html" class="xl:ml-4 lg:ml-4 flex items-center hover:bg-slate-400 rounded"> 
                   <img src="img/DIGESZA.png" class="mr-3 sm:h-12"/>
-                  <span class="titulo self-center text-xl font-bold whitespace-nowrap dark:text-white 
+                  <span class="titulo self-center text-xl font-bold whitespace-nowrap dark:text-white md:text-lg
                   hover:text-white hover:font-bold">Digesza S.A. de C.V.</span>
               </a>
 
-              <!--    Lista de menu   -->
+               <!--    Lista de menu CELULAR  -->
+              <div class="w-[%50] ctn-menu-tablet md:hidden">
+                <ul class="bg-white flex flex-row border border-white rounded-lg font-medium 
+                   dark:bg-blue-900 justify-center py-1">   
+                    <li>
+                        <a href="index.html" class="block py-2 pl-3 pr-4 dark:bg-blue-600 text-blue-900
+                        hover:bg-slate-100 hover:text-slate-900 rounded underline decoration-sky-500 font-bold">Inicio
+                        </a>
+                    </li>
+        
+                    <li>
+                        <a href="pages/inscripcionCredito.php" class="block py-2 pl-3 pr-4 md:bg-transparent md:text-blue-700
+                        md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent 
+                        hover:bg-slate-100 hover:text-slate-900 rounded hover:underline decoration-sky-500 font-bold">Inscripción de crédito
+                        </a>
+                    </li>
+                </ul>
+               </div>
+
+
+              <!--    Lista de menu TABLE,ESCRITORIO,LAPTOP  -->
               <div class="hidden w-full md:block md:w-auto ctn-menu-tablet">
-                  <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-base font-medium 
-                  md:border-0 md:bg-white md:pr-8
-                  xl:pr-8 xl:space-x-12 xl:text-base 
-                    dark:bg-blue-900 md:dark:bg-blue-800">   
+
+                  <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-base font-medium md:border-0 md:bg-white md:pr-8 
+                    xl:pr-8 xl:space-x-12 xl:text-base dark:bg-blue-900 md:dark:bg-blue-800">   
                       <li>
                           <a href="index.html" class="block py-2 pl-3 pr-4 md:bg-transparent md:text-blue-700
                           md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent xl:ml-3
@@ -48,16 +67,18 @@
     </nav>
 </header>
 
+                <!--    INFORMACIÓN PRINCIPAL  -->
 <div class="flex-auto w-full mt-0.3 py-0">
-  <div class="flex items-center mb-2 bg-blue-500 text-white text-xl font-bold px-4 py-3 text-center md:text-base
-  hover:bg-yellow-600 justify-center hover:font-serif"> 
-    <p class="hover:font-serif">Somos una SOFOM mandataria de FOVISSSTE autorizada para la formalización de créditos
+  <div class="flex items-center mb-2 bg-blue-500 text-white text-base font-bold px-4 py-3 text-center 
+  sm:text-base md:text-lg lg:text-xl xl:text-4xl
+  hover:bg-yellow-600 justify-center"> 
+    <p class="">Somos una SOFOM mandataria de FOVISSSTE autorizada para la formalización de créditos
       hipotecarios, con presencia en 5 Estados de la República:
     </p>
   </div>
 </div>
 
-
+                <!--    CARDS DE SUCURSALES   -->
 <div class="flex-auto w-full py-5 bg-black mt-4">
   <div class="grid grid-cols-3 gap-6 mx-5 text-center">
 
@@ -68,7 +89,7 @@
           <img class="w-auto rounded-lg" src="img/guerrero.jpg" alt="card image" />
         </div>
         <div class="flex-1 items-center">
-          <h1 class="font-medium text-2xl">Guerrero</h1>
+          <h1 class="font-medium text-2xl sm:text-base md:text-xl">Guerrero</h1>
         </div>
       </div>
     </div>
@@ -79,7 +100,7 @@
           <img class="w-auto rounded-lg" src="img/tamaulipas.jpg" alt="card image" />
         </div>
         <div class="flex-1 items-center">
-          <h1 class="font-medium text-2xl">Tamaulipas</h1>
+          <h1 class="font-medium text-2xl sm:text-xl md:text-xl">Tamaulipas</h1>
         </div>
       </div>
     </div>
@@ -90,7 +111,7 @@
           <img class="w-auto rounded-lg" src="img/estadoMx.jpg" alt="card image" />
         </div>
         <div class="flex-1 items-center">
-          <h1 class="font-medium text-2xl">Estado de México</h1>
+          <h1 class="font-medium text-2xl sm:text-xl md:text-xl">Estado de México</h1>
         </div>
       </div>
     </div>
@@ -101,7 +122,7 @@
           <img class="w-auto rounded-lg" src="img/edoMxCondesa.jpg" alt="card image" />
         </div>
         <div class="flex-1 items-center">
-          <h1 class="font-medium text-2xl">Edoméx. Hipódromo Condesa</h1>
+          <h1 class="font-medium text-2xl sm:text-xl md:text-xl">Edoméx. Hipódromo Condesa</h1>
         </div>
       </div>
     </div>
@@ -112,7 +133,7 @@
           <img class="w-auto rounded-lg" src="img/valleSur.jpg" alt="card image" />
         </div>
         <div class="flex-1 items-center">
-          <h1 class="font-medium text-2xl">Edoméx. Del Valle del Sur</h1>
+          <h1 class="font-medium text-2xl sm:text-xl md:text-xl">Edoméx. Del Valle del Sur</h1>
         </div>
       </div>
     </div>
@@ -123,24 +144,68 @@
           <img class="w-auto rounded-lg" src="img/x.jpg" alt="card image" />
         </div>
         <div class="flex-1 items-center">
-          <h1 class="font-medium text-2xl">Proximamente...</h1>
+          <h1 class="font-medium text-2xl sm:text-xl md:text-xl">Proximamente...</h1>
         </div>
       </div>
     </div>
-
   
-    
 
   </div>
 </div>
 
-<div class="flex-auto w-full mt-0.3 bg-blue-500 py-5">
-  <div class="flex items-center mb-2 bg-blue-500 text-white text-xl font-bold px-4 py-0 text-center"> 
-    <p>Nuestro grupo de 7 sucursales tiene la capacidad técnica y operativa
+                <!--    INFORMACIÓN SECUNDARIA   -->
+<div class="flex-auto w-full mt-0.3 bg-blue-500 py-5 hover:bg-yellow-600">
+  <div class="flex items-center mb-2 bg-blue-500 text-white text-base font-bold px-4 py-0 text-center 
+  sm:text-base md:text-lg lg:text-xl xl:text-4xl 
+  hover:bg-yellow-600"> 
+    <p class="hover:bg-yellow-600">Nuestro grupo de 7 sucursales tiene la capacidad técnica y operativa
       para apoyarte en todo tu proceso de adquisición de vivienda, por eso,somos tu mejor opción!
     </p>
   </div>
 </div>
+
+
+<footer class="bg-blue-900 w-full py-3">
+    <div class="bg-blue-900 flex justify-center">
+
+      <figure class="flex flex-col items-center justify-center p-8 text-center bg-blue-900 border-gray-200 rounded-b-lg md:rounded-br-lg 
+      dark:bg-gray-800 dark:border-gray-700 mx-5 mb-2">
+        <a href="https://www.facebook.com/corporativodigesza.com.mx/?locale=es_LA" target="_blank">
+          <figcaption class="flex items-center justify-center space-x-3">
+              <img class="rounded-full w-2 h-2" src="img/facebook64.png" alt="profile picture">
+              <div class="space-y-0.5 font-medium dark:text-white text-left">
+                  <div class="text-white ml-2">Corporativo Digezsa</div>
+                  <div class="text-sm text-white dark:text-gray-400">Soluciones Jurídicas</div>
+              </div>
+          </figcaption>    
+        </a>
+      </figure>
+    
+      <figure class="flex flex-col items-center justify-center p-8 text-center bg-blue-900 border-gray-200 rounded-b-lg md:rounded-br-lg 
+      dark:bg-gray-800 dark:border-gray-700 mx-5 mb-2">
+        <a href="https://twitter.com/digesza?lang=es" target="_blank">
+          <figcaption class="flex items-center justify-center space-x-3">
+              <img class="rounded-full w-2 h-2" src="img/twitter64.png" alt="profile picture">
+              <div class="space-y-0.5 font-medium dark:text-white text-left">
+                  <div class="text-white ml-2">Corporativo Digezsa</a></div>
+                  <div class="text-sm text-white dark:text-gray-400">Despacho Jurídico</div>
+              </div>
+          </figcaption>    
+        </a>
+      </figure>
+
+    </div class="flex justify-center">
+      <hr class="border-white sm:mx-auto dark:border-gray-700"/>
+      <span class="block text-base text-white dark:text-gray-400 text-center ">© 2023 
+        <a href="http://abacapital.com.mx/" target="_blank" class="hover:underline">Abacapital™</a>
+        . All Rights Reserved.
+      </span>
+    </div>
+
+   </div>
+</footer>
+
+
 
 </body>
 </html>

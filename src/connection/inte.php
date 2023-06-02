@@ -101,7 +101,7 @@ $conexion->conectar();
         $conexion->insertDerechoHabiente($nombreDH, $ap_paternoDH, $ap_maternoDH, $linea_credito, $fecha_nacimientoDH, $lugar_nacimientoDH, $curpDH, $estado_civil, $genero, 
         $rfcDH, $nssDH, $emailDH,"PROTEGIDO", $fecha_actualizacion,"");
 
-       /* if(!$conexion->insertDHLaborales($rfcDH, $entidad_federativaLB, $dependencia, $organizacion_sindical, $sueldo, $nombramiento, $bimestres)) {
+        if(!$conexion->insertDHLaborales($rfcDH, $entidad_federativaLB, $dependencia, $organizacion_sindical, $sueldo, $nombramiento, $bimestres)) {
             $success = false;
         }
 
@@ -115,14 +115,13 @@ $conexion->conectar();
     
         if(!$conexion->insertCaracteristicasVivienda($rfcDH, $adquisicion, $entidad_vivienda, $municipio_vivienda, $terreno, $habitable, $pisos, $cochera, $alberca, $caracteristicas)) {
              $success = false;
-        }*/
+        }
         
         if(!$conexion->moverArchivosPDF($rfcDH,$ine_archivo,$curp_archivo,$talon_archivo,$domicilio_archivo,$rfc_archivo,$acta_archivo)) {
             $success = false;
         }
 
         if($estado_civil == "Casada(o)" && $rfcDH != $rfc_conyuge){
-
             if (!$conexion->insertConyuge($rfcDH, $nombre_conyuge, $paterno_conyuge, $materno_conyuge, $fechaNac_conyuge, $lugarNac_conyuge, $curp_conyuge, $rfc_conyuge, 
             $nss_conyuge, $correo_conyuge, $genero_conyuge, $infonavit_conyuge)) {
                 $success = false;
@@ -134,23 +133,24 @@ $conexion->conectar();
                 $success = false;
             }else{
 
-         /*   if(!$conexion->insertLaboralesConyuge($rfc_conyuge, $entidad_federativa_conyuge, $dependencia_conyuge, $organizacion_conyuge, $sueldo_conyuge, $nombramiento_conyuge, $bimestres_conyuge)){
-                $conexion->deleteDerechoHabiente($curp_conyuge);
-                $success = false;
-            }*/
+                if(!$conexion->insertLaboralesConyuge($rfc_conyuge, $entidad_federativa_conyuge, $dependencia_conyuge, $organizacion_conyuge, $sueldo_conyuge, $nombramiento_conyuge, $bimestres_conyuge)){
+                    $conexion->deleteDerechoHabiente($curp_conyuge);
+                    $success = false;
+                }
 
-            $ine_archivo_conyuge = isset($_FILES['ine_file_conyuge']) ? $_FILES['ine_file_conyuge'] : null;
-            $curp_archivo_conyuge = isset($_FILES['curp_file_conyuge']) ? $_FILES['curp_file_conyuge'] : null;
-            $talon_archivo_conyuge = isset($_FILES['talonPago_file_conyuge']) ? $_FILES['talonPago_file_conyuge'] : null;
-            $domicilio_archivo_conyuge = isset($_FILES['domicilio_file_conyuge']) ? $_FILES['domicilio_file_conyuge'] : null;
-            $rfc_archivo_conyuge = isset($_FILES['rfc_file_conyuge']) ? $_FILES['rfc_file_conyuge'] : null;
-            $acta_archivo_conyuge = isset($_FILES['actaNacimiento_file_conyuge']) ? $_FILES['actaNacimiento_file_conyuge'] : null;
+                if($linea_credito == "Mancomunado"){
+                    $ine_archivo_conyuge = isset($_FILES['ine_file_conyuge']) ? $_FILES['ine_file_conyuge'] : null;
+                    $curp_archivo_conyuge = isset($_FILES['curp_file_conyuge']) ? $_FILES['curp_file_conyuge'] : null;
+                    $talon_archivo_conyuge = isset($_FILES['talonPago_file_conyuge']) ? $_FILES['talonPago_file_conyuge'] : null;
+                    $domicilio_archivo_conyuge = isset($_FILES['domicilio_file_conyuge']) ? $_FILES['domicilio_file_conyuge'] : null;
+                    $rfc_archivo_conyuge = isset($_FILES['rfc_file_conyuge']) ? $_FILES['rfc_file_conyuge'] : null;
+                    $acta_archivo_conyuge = isset($_FILES['actaNacimiento_file_conyuge']) ? $_FILES['actaNacimiento_file_conyuge'] : null;
 
-            if(!$conexion->moverArchivosPDF($rfc_conyuge,$ine_archivo_conyuge,$curp_archivo_conyuge,$talon_archivo_conyuge,$domicilio_archivo_conyuge,$rfc_archivo_conyuge,$acta_archivo_conyuge)) {
-                $success = false;
+                    if(!$conexion->moverArchivosPDF($rfc_conyuge,$ine_archivo_conyuge,$curp_archivo_conyuge,$talon_archivo_conyuge,$domicilio_archivo_conyuge,$rfc_archivo_conyuge,$acta_archivo_conyuge)) {
+                        $success = false;
+                    }
+                }
             }
-        }
-        
         }
 
         echo $success ? "Inserción correcta" : "Error en la inserción de algún método";

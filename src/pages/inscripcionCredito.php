@@ -48,7 +48,7 @@
         </nav>
 </header>    
 
-<!--    Modal error  -->
+                                    <!--    Modal error Listo      -->
 <div class="fixed top-0 left-0 right-0 z-50 p-4 modal hidden" id="modalError">
   <div class="relative w-full h-full max-w-md md:h-auto">
       <div class="relative bg-white rounded-lg shadow dark:bg-blue-700">
@@ -71,7 +71,7 @@
   </div>
 </div>
 
-                                    <!--    Modal aviso  -->
+                                    <!--    Modal aviso Listo      -->
 <div class="fixed top-0 left-0 right-0 z-50 p-4 modal" id="modal">
   <div class="relative w-full h-full max-w-md md:h-auto">
       <div class="relative bg-white rounded-lg shadow dark:bg-blue-700">
@@ -93,6 +93,7 @@
   </div>
 </div>
 
+                                    <!--    Modal de error generado desde PHP/SQL Listo     -->
 <div class="fixed top-0 left-0 right-0 z-50 p-4 modal hidden" id="modal-error-servidor">
   <div class="relative w-full h-full max-w-md md:h-auto">
       <div class="relative bg-white rounded-lg shadow dark:bg-blue-700">
@@ -107,14 +108,32 @@
               <div>
               <button data-modal-hide="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 
               focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-base inline-flex items-center
-              px-5 py-2.5 text-center mr-5 mt-6" id="btn-reg-fov">Ok!</button>
+              px-5 py-2.5 text-center mr-5 mt-6" id="btn-error-php">Ok!</button>
               </div>
           </div>
       </div>
   </div>
 </div>
 
-                                    <!--    Modal aviso documentos  -->
+                                    <!--    Modal de datos aceptados Listo   -->
+<div class="fixed top-0 left-0 right-0 z-50 p-4 modal hidden" id="modal-datos-aceptados">
+  <div class="relative w-full h-full max-w-md md:h-auto">
+      <div class="relative bg-white rounded-lg shadow dark:bg-blue-700">
+          <div class="p-2 text-center">
+              <button id="aceptar">
+                <img src="../img/che64.png" alt="">
+              </button>
+              <div>
+                <span class="mb-3 text-lg font-normal dark:text-white bold" id="modal-txt">
+                    Datos procesados con éxito, registro listo!
+                </span>
+              </div> 
+          </div>
+      </div>
+  </div>
+</div>
+
+                                    <!--    Modal aviso documentos Listo    -->
 <div class="fixed top-10 left-0 right-0 z-50 p-4 modalDoc" id="modalDoc">
     <div class="relative w-full h-full max-w-md md:h-auto">
         <div class="relative bg-slate-50 rounded-lg shadow dark:bg-blue-700">

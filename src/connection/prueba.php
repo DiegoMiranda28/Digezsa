@@ -285,7 +285,7 @@ class ConexionSQLServer {
             return false;
         }
     }
-
+ 
     public function validarConyuge($curp){
         $derechohabienteRfc = $this->getDerechohabienteRfcFromConyuge($curp);
         echo "RFC $derechohabienteRfc";
@@ -325,6 +325,7 @@ class ConexionSQLServer {
         } 
     }
 
+    
     /* ==========   FUNCIONES PARA GENERAR RUTA, NOMBRE DE ARCHIVOS E INSERTAR  ========== */
     public function generateUniqueFileName($file, $inputName, $rfc) {
         $fileName = $file["name"];
