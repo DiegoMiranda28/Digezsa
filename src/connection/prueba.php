@@ -256,7 +256,7 @@ class ConexionSQLServer {
 
             //En la tabla de abacapital es nombres
             $this->connection->beginTransaction();
-            $sql = "set language spanish INSERT INTO conyuge (rfc_derechohabiente,nombre,apellido_paterno,apellido_materno,fecha_nacimiento,lugar_nacimiento,curp,rfc,nss,
+            $sql = "set language spanish INSERT INTO conyuge (rfc_derechohabiente,nombres,apellido_paterno,apellido_materno,fecha_nacimiento,lugar_nacimiento,curp,rfc,nss,
             email,genero,infonavit) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
             //nombres con abacapital
             $stmt = $this->connection->prepare($sql);

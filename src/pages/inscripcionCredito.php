@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/output.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
     <link href="../css/design.css" rel="stylesheet">
     <link rel="shortcut icon" href="../img/DIGESZA.png">
+
     <title>Inscripción - Digesza</title>
 </head>
 
@@ -72,7 +74,7 @@
 </div>
 
                                     <!--    Modal aviso Listo      -->
-<div class="fixed top-0 left-0 right-0 z-50 p-4 modal" id="modal">
+<div class="fixed top-0 left-0 right-0 z-50 p-4 modal hidden" id="modal">
   <div class="relative w-full h-full max-w-md md:h-auto">
       <div class="relative bg-white rounded-lg shadow dark:bg-blue-700">
           <div class="p-2 text-center">
@@ -690,58 +692,67 @@
 
                         <hr class="mt-6 border-b-1 border-gray-600 hidden" id="linea-conyuge2">
 
-                        <!-- ==================== DOCUMENTOS PDF CONYUGE ==================== -->
+                        <!-- ==================== DOCUMENTOS PDF CONYUGE ==================== 
                         <div class="justify-between w-full hidden" id="doc-pdf-html">    
                             <h6 class="text-orange-800 text-lg mt-1 mb-6 font-bold uppercase">Adjuntar documentos actualizados cónyuge</h6>
                         </div>
+                        -->
 
+                        
                         <div class="flex-wrap hidden" id="cnt-pdf-cy">
-                            <!--    contenedor de la credencial  -->
+                            <!--    contenedor de la credencial  (input quitado)
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-6/12 lg:w-6/12 md:w-8/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-2/12 sm:w-4/12" for="user_avatar">Identificación oficial</label>
                                     <input id="credencial-conyuge" accept=".pdf" name="INE" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
+                            -->
 
-                            <!--    contenedor del curp  -->
+                            <!--    contenedor del curp (input quitado) 
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-6/12 lg:w-6/12 md:w-6/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-2/12 mt-1 sm:w-4/12" for="user_avatar">CURP formato PDF</label>
                                     <input id="curp-conyuge" accept=".pdf" name="CURP" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
+                            -->
 
-                            <!--    contenedor de talon de pago  -->
+                            <!--    contenedor de talon de pago (input quitado) 
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-8/12 lg:w-8/12 md:w-8/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-2/12 mt-1 sm:w-4/12" for="user_avatar">Ultimo talón de pago</label>
                                     <input id="talonPago-conyuge" accept=".pdf" name="TALONPAGO" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
+                            -->
 
-                            <!--    contenedor de comprobante de domicilio  -->
+                            <!--    contenedor de comprobante de domicilio (input quitado) 
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-8/12 lg:w-8/12 md:w-9/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-4/12 mt-1 sm:w-5/12" for="user_avatar">Comprobante de domicilio</label>
                                     <input id="domicilio-conyuge" accept=".pdf" name="DOMICILIO" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
+                            -->
 
-                             <!--    contenedor de rfc  -->
+                             <!--    contenedor de rfc (input quitado) 
                              <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-8/12 lg:w-8/12 md:w-9/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-4/12 mt-1 sm:w-5/12" for="user_avatar">RFC formato PDF</label>
                                     <input id="input-rfc-conyuge-intento" accept=".pdf" name="RFC" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
-                            <!--    contenedor de acta de nacimiento  -->
+                            -->
+
+                            <!--    contenedor de acta de nacimiento (input quitado) 
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-8/12 lg:w-8/12 md:w-9/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-4/12 mt-1 sm:w-5/12" for="user_avatar">Acta de nacimiento</label>
                                     <input id="input-acta-conyuge" accept=".pdf" name="ACTANACIMIENTO" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
+                            -->
                             
                         </div>
 
@@ -883,7 +894,7 @@
                                     <select id="input-vivienda-cochera" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
                                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
                                     dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option value="" selected disabled hidden>Elige una opción</option>
+                                        <option selected disabled hidden>Elige una opción</option>
                                         <option value="SI">Si</option>
                                         <option value="NO">No</option>
                                     </select>
@@ -897,7 +908,7 @@
                                     <select id="input-vivienda-alberca" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
                                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 
                                     dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option value="" selected disabled hidden>Elige una opción</option>
+                                        <option selected disabled hidden>Elige una opción</option>
                                         <option value="SI">Si</option>
                                         <option value="NO">No</option>
                                     </select>
@@ -920,52 +931,82 @@
 
                         <!-- ==================== DOCUMENTOS PDF ==================== -->
                         <div class="inline-flex justify-between w-full">    
-                            <h6 class="text-gray-700 text-lg mt-1 mb-6 font-bold uppercase">Adjuntar documentos actualizados</h6>
+                            <h6 class="text-gray-700 text-lg mt-1 mb-2 font-bold uppercase">NOTA de documentos PDF</h6>
                         </div>
 
                         <div class="flex flex-wrap">
-                            <!--    contenedor de la credencial  -->
+
+                            <p class="text-lg font-serif font-semibold">
+                                Entregar en oficina los siguientes documentos actualizados (en caso de un crédito mancomunado, también llevar la misma 
+                                documentación del cónyuge):
+                            </p>
+
+                            <div>
+                                <ul class="text-lg font-bold">
+                                    <li>- Identificación oficial por ambos lados al 200% a color.</li>
+                                    <li>- Curp actualizado.</li>
+                                    <li>- Último talón de pago.</li>
+                                    <li>- Comprobante de domicilio no mayor a 3 meses.</li>
+                                    <li>- RFC actualizado.</li>
+                                    <li>- Acta de nacimiento.</li>
+                                </ul>
+                            </div>
+                            <!--    contenedor de la credencial (input quitado)
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-6/12 lg:w-6/12 md:w-8/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-2/12 sm:w-4/12" for="user_avatar">Identificación oficial</label>
                                     <input id="input-credencial-pdf" name="INE" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
-                            <!--    contenedor del curp  -->
+                            -->
+
+                            <!--    contenedor del curp (input quitado)
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-6/12 lg:w-6/12 md:w-6/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-2/12 mt-1 sm:w-4/12" for="user_avatar">CURP formato PDF</label>
                                     <input id="input-curp-pdf" name="CURP" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
-                            <!--    contenedor de talon de pago  -->
+                            -->
+
+                            <!--    contenedor de talon de pago (input quitado) 
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-8/12 lg:w-8/12 md:w-8/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-2/12 mt-1 sm:w-4/12" for="user_avatar">Ultimo talón de pago</label>
                                     <input id="input-pago-pdf" name="TALONPAGO" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
-                            <!--    contenedor de comprobante de domicilio  -->
+                            -->
+                            
+                            <!--    contenedor de comprobante de domicilio (input quitado)
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-8/12 lg:w-8/12 md:w-9/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-4/12 mt-1 sm:w-5/12" for="user_avatar">Comprobante de domicilio</label>
                                     <input id="input-comprobante-pdf" name="DOMICILIO" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
-                            <!--    contenedor de rfc  -->
+                            -->
+
+                            <!--    
+                                                contenedor de rfc (input quitado)
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-8/12 lg:w-8/12 md:w-9/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-4/12 mt-1 sm:w-5/12" for="user_avatar">RFC formato PDF</label>
                                     <input id="input-rfc-pdf" name="RFC" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
-                            <!--    contenedor de acta de nacimiento  -->
+                             -->
+
+                            <!--    
+                                                contenedor de acta de nacimiento (input quitado)  
                             <div class="w-full lg:w-6/12 px-4 mt-[-0.5em] xl:w-6/12 md:w-6/12">
                                 <div class="relative w-full mb-3">
                                     <label class="xl:w-8/12 lg:w-8/12 md:w-9/12 block mb-2 text-lg font-medium text-gray-900 dark:text-white w-4/12 mt-1 sm:w-5/12" for="user_avatar">Acta de nacimiento</label>
                                     <input id="input-acta-pdf" name="ACTANACIMIENTO" accept=".pdf" class="block w-10/12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">        
                                 </div>
                             </div>
+                            -->
+
                         </div>
                         <hr class="mt-6 border-b-1 border-gray-600">       
 

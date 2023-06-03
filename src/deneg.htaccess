@@ -1,0 +1,4 @@
+RewriteEngine On
+
+# Denegar acceso directo a archivos PDF en la carpeta y subdirectorios
+RewriteRule ^src/pdf/ - [F]

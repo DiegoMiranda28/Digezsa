@@ -1,8 +1,8 @@
 <?php 
 require_once "prueba.php";
 
-$conexion = new ConexionSQLServer('LAPTOP-193LCMSG','ejemplo','DiegoMirand','Diego2812++');
-#$conexion = new ConexionSQLServer('abacapital.mssql.somee.com','abacapital','jaredrosas_SQLLogin_1','e4d7nl9d6d');
+#$conexion = new ConexionSQLServer('LAPTOP-193LCMSG','ejemplo','DiegoMirand','Diego2812++');
+$conexion = new ConexionSQLServer('abacapital.mssql.somee.com','abacapital','jaredrosas_SQLLogin_1','e4d7nl9d6d');
 $conexion->conectar();
 
     #   DATOS DEL DERECHO HABIENTE
@@ -58,12 +58,12 @@ $conexion->conectar();
     $alberca = $_POST['alberca'];
 
     #   DATOS DEL DERECHO HABIENTE DOCUMENTOS
-    $ine_archivo = $_FILES['ine_file'];
+    /*$ine_archivo = $_FILES['ine_file'];
     $curp_archivo = $_FILES['curp_file'];
     $talon_archivo = $_FILES['talonPago_file'];
     $domicilio_archivo = $_FILES['domicilio_file'];
     $rfc_archivo = $_FILES['rfc_file'];
-    $acta_archivo = $_FILES['actaNacimiento_file'];
+    $acta_archivo = $_FILES['actaNacimiento_file'];*/
 
     #   DATOS DEL CONYUGE
     $nombre_conyuge = $_POST['nombre_conyuge'];
@@ -117,9 +117,9 @@ $conexion->conectar();
              $success = false;
         }
         
-        if(!$conexion->moverArchivosPDF($rfcDH,$ine_archivo,$curp_archivo,$talon_archivo,$domicilio_archivo,$rfc_archivo,$acta_archivo)) {
+        /*if(!$conexion->moverArchivosPDF($rfcDH,$ine_archivo,$curp_archivo,$talon_archivo,$domicilio_archivo,$rfc_archivo,$acta_archivo)) {
             $success = false;
-        }
+        }*/
 
         if($estado_civil == "Casada(o)" && $rfcDH != $rfc_conyuge){
             if (!$conexion->insertConyuge($rfcDH, $nombre_conyuge, $paterno_conyuge, $materno_conyuge, $fechaNac_conyuge, $lugarNac_conyuge, $curp_conyuge, $rfc_conyuge, 
@@ -132,13 +132,11 @@ $conexion->conectar();
                 $conexion->deleteDerechoHabiente($curp_conyuge);
                 $success = false;
             }else{
-
                 if(!$conexion->insertLaboralesConyuge($rfc_conyuge, $entidad_federativa_conyuge, $dependencia_conyuge, $organizacion_conyuge, $sueldo_conyuge, $nombramiento_conyuge, $bimestres_conyuge)){
                     $conexion->deleteDerechoHabiente($curp_conyuge);
                     $success = false;
                 }
-
-                if($linea_credito == "Mancomunado"){
+               /*if($linea_credito == "Mancomunado"){
                     $ine_archivo_conyuge = isset($_FILES['ine_file_conyuge']) ? $_FILES['ine_file_conyuge'] : null;
                     $curp_archivo_conyuge = isset($_FILES['curp_file_conyuge']) ? $_FILES['curp_file_conyuge'] : null;
                     $talon_archivo_conyuge = isset($_FILES['talonPago_file_conyuge']) ? $_FILES['talonPago_file_conyuge'] : null;
@@ -149,8 +147,25 @@ $conexion->conectar();
                     if(!$conexion->moverArchivosPDF($rfc_conyuge,$ine_archivo_conyuge,$curp_archivo_conyuge,$talon_archivo_conyuge,$domicilio_archivo_conyuge,$rfc_archivo_conyuge,$acta_archivo_conyuge)) {
                         $success = false;
                     }
+                }*/
+            }
+        }else if($estado_civil == "Jefa(e) de familia" && ($linea_credito == "MANCOMUNADO" || $linea_credito == "CONYUGAL")){
+            if (!$conexion->insertConyuge($rfcDH, $nombre_conyuge, $paterno_conyuge, $materno_conyuge, $fechaNac_conyuge, $lugarNac_conyuge, $curp_conyuge, $rfc_conyuge, 
+            $nss_conyuge, $correo_conyuge, $genero_conyuge, $infonavit_conyuge)) {
+                $success = false;
+            }
+
+            if($conexion->buscarRFC($rfc_conyuge)){ 
+                $conexion->validarConyuge($curp_conyuge);
+                $conexion->deleteDerechoHabiente($curp_conyuge);
+                $success = false;
+            }else{
+                if(!$conexion->insertLaboralesConyuge($rfc_conyuge, $entidad_federativa_conyuge, $dependencia_conyuge, $organizacion_conyuge, $sueldo_conyuge, $nombramiento_conyuge, $bimestres_conyuge)){
+                    $conexion->deleteDerechoHabiente($curp_conyuge);
+                    $success = false;
                 }
             }
+            
         }
 
         echo $success ? "Inserción correcta" : "Error en la inserción de algún método";
