@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link href="../css/output.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/design.css" rel="stylesheet">
@@ -12,21 +12,49 @@
     <title>Inscripción - Digesza</title>
 </head>
 
-<body>
+<body class="bg-blue-900">
 
                                     <!--    Menú principal PENDIENTE EN DIMENSION LAPTOP  -->
-<header class="w-full">
-        <nav class="px-2 bg-blue-900 flex">
+<header class="w-full mx-auto">
+        <nav class="px-2 bg-blue-900 flex w-full">
             <div class="container flex flex-wrap items-center justify-between mx-auto ctn-tablet">
             
-                <a href="../index.html" class="xl:ml-4 lg:ml-4 flex items-center hover:bg-slate-400 rounded"> 
-                    <img src="../img/DIGESZA.png" class="mr-3 sm:h-12"/>
+                <a href="../index.html" class="xl:ml-4 lg:ml-4 flex items-center hover:bg-slate-400 rounded sm:hidden"> 
+                    <img src="../img/DIGESZA.png" class="mr-3 sm:h-12 img-digezsa" />
                     <span class="titulo self-center text-xl font-bold whitespace-nowrap dark:text-white 
-                    hover:text-white hover:font-bold md:text-xl lg:text-xl">Digesza S.A. de C.V.</span>
+                    hover:text-white hover:font-bold md:text-xl lg:text-xl tittle-cnt">Digesza S.A. de C.V.</span>
                 </a>
 
-                <!--    Lista de menu 
-             C:\Users\diego\OneDrive\Escritorio\Digezsa\Digezsa_develop\src\pages\inscripcionCredito.php -->
+                 <!-- 
+                <a href="../index.html" class="flex items-center hover:bg-slate-400 hidden rounded md:hidden:block"> 
+                    <img src="../img/DIGESZA.png" class="mr-3 h-14 hidden md:block"/>
+                    <span class="titulo self-center text-xl font-bold whitespace-nowrap dark:text-white 
+                    hover:text-white hover:font-bold">Digesza S.A. de C.V.</span>
+                </a>
+                -->
+
+                <!--    Lista de menu CELULAR  -->
+                <div class="w-[%50] ctn-menu-tablet md:hidden lista-menu-celular ctn-mobile">
+                        <ul class="bg-white flex flex-row border border-white rounded-lg font-medium 
+                        dark:bg-blue-900 justify-center py-1">   
+                            <li>
+                                <a href="../index.html" class="block py-2 pl-3 pr-4 md:bg-transparent md:text-blue-700
+                                    md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent xl:ml-3
+                                    hover:bg-slate-100 hover:text-slate-900 rounded hover:underline decoration-sky-500 font-bold">Inicio
+                                </a>
+                            </li>
+                
+                            <li>
+                                <a href="pages/inscripcionCredito.php" class="block py-2 pl-3 pr-4 md:bg-transparent md:text-blue-700
+                                    md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent 
+                                    hover:bg-slate-100 hover:text-slate-900 rounded underline decoration-sky-500 font-bold">Inscripción de crédito
+                                </a>
+                            </li>
+                        </ul>
+                </div>
+
+
+                <!--    Lista de menu LAPTOP, TABLET    -->
                 <div class="hidden w-full md:block md:w-auto ctn-menu-tablet md:ml-9">
                     <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-base font-medium 
                     md:border-0 md:bg-white md:pr-8
@@ -47,6 +75,8 @@
                         </li>
                     </ul>
             </div>
+
+           
         </nav>
 </header>    
 
@@ -135,7 +165,7 @@
   </div>
 </div>
 
-                                    <!--    Modal aviso documentos Listo    -->
+                                    <!--    Modal aviso documentos Listo  -->  
 <div class="fixed top-10 left-0 right-0 z-50 p-4 modalDoc" id="modalDoc">
     <div class="relative w-full h-full max-w-md md:h-auto">
         <div class="relative bg-slate-50 rounded-lg shadow dark:bg-blue-700">
@@ -160,8 +190,9 @@
     </div>
 </div>
 
+
                                     <!--    Sección de formulario   -17,18,19 2.2 2.3(4UNIDAD)  -->
-<section class="bg-blue-500 py-1">
+<section class="bg-blue-500 py-1 flex flex-col h-screen">
         
         <div class="w-full lg:w-10/12 px-4 mx-auto mt-6">
             <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-400 border-0">         
@@ -173,10 +204,12 @@
                     <h6 class="text-blueGray-700 text-xl font-bold">
                         Formato para inscripción de crédito 2023
                     </h6>
+                    
                     <button class="bg-blue-500 text-white active:bg-teal-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md 
                     outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button" id="btn-aviso">
                         Aviso documentos PDF
                     </button>
+                    
                 </div>
                 </div>
                                         <!--    Caja del formulario  -->
@@ -1013,18 +1046,18 @@
                         <!-- ===== BOTONES DE ENVIO Y ACEPTACIÓN ===== -->
                         <div class="flex flex-wrap h-4">
 
-                            <div class="w-full lg:w-2/12 px-4 mt-2">
-                                <input type="submit" name="submit" value="Cargar" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 
+                            <div class="w-full lg:w-2/12 sm:w-6/12 px-4 mt-2 btn-enviar-cnt">
+                                <input type="submit" name="submit" value="Enviar" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 
                                 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 
                                 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 
                                 py-2.5 text-center mr-2 mb-2" id="btn-enviar-sb"></input>
                             </div>
 
-                            <div class="w-full lg:w-6/12 px-4 md:-mt-10 md:ml-28 lg:mt-4 lg:ml-3 sm:-mt-10 sm:ml-24">
+                            <div class="w-full lg:w-6/12 sm:w-6/12 px-4 md:-mt-10 md:ml-28 lg:mt-4 lg:ml-3 sm:-mt-10 sm:ml-24 btn-checado-cnt">
                                 <label class="relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" id="input-restriccion" class="sr-only peer" onchange="checado(this)">
+                                    <input type="checkbox" id="input-restriccion" class="sr-only peer circle-check" onchange="checado(this)">
                                     <div class="w-11 h-6 bg-red-600 rounded-full peer-focus:ring-4 peer-focus:ring-blue-300
-                                    dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full 
+                                    dark:peer-focus:ring-red-900 dark:bg-gray-700 peer-checked:after:translate-x-full 
                                     peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px]
                                     after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 
                                     after:transition-all dark:border-gray-600 peer-checked:bg-blue-600" id="btn-check" onchange="checado(this)"></div>

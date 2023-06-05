@@ -21,6 +21,47 @@
     color: white;
 }
 
+@media(max-width: 460px){
+    .btn-checado-cnt {
+        background-color: brown;
+    }
+}
+
+@media (max-width: 640px) {
+    .img-digezsa {
+        height: 4rem;
+    }
+
+    /* Contenedor de boton "Enviar" */
+    .btn-enviar-cnt {
+        width: 10%;
+        margin-right: 2em;
+    }
+
+    /* Contenedor de boton "checkbox y condiciones" */
+    .btn-checado-cnt {
+        width: 80%;
+        margin-left: 0.5em;
+        margin-top: 1em;
+    }
+
+    .tittle-cnt {
+        font-size: larger;
+    }
+
+    .lista-menu-celular {
+        font-size: medium;
+    }
+    
+    .ctn-mobile {
+        width: 100%;
+    }
+
+    .ctn-tablet {
+        justify-content: center;
+    }
+}
+
 @media (max-width: 768px) {
     .ctn-menu-tablet {
         margin-top: 5px;
